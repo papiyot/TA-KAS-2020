@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title')Home @endsection
 @section('content')
     <div class="block">
         <div class="block-header block-header-default">

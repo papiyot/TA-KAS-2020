@@ -46,7 +46,7 @@
             <!-- Visible only in normal mode -->
             <div class="sidebar-mini-hidden-b text-center">
                 <a class="img-link" href="javascript:void(0)">
-                    <img class="img-avatar" src="assets/media/avatars/avatar15.jpg" alt="">
+                    <img class="img-avatar" src="{{ asset('assets/media/avatars/avatar0.jpg') }}" alt="">
                 </a>
                 <ul class="list-inline mt-10">
                     <li class="list-inline-item">
@@ -75,22 +75,34 @@
         <div class="content-side content-side-full">
             <ul class="nav-main">
                 <li>
-                    <a href="be_pages_dashboard.html"><i class="si si-cup"></i><span class="sidebar-mini-hide">Dashboard</span></a>
+                    <a href="{{ route('home') }}"><i class="si si-cup"></i><span class="sidebar-mini-hide">Home</span></a>
                 </li>
-                <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span class="sidebar-mini-hidden">User Interface</span></li>
+                <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span class="sidebar-mini-hidden">Master</span></li>
                 <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-puzzle"></i><span class="sidebar-mini-hide">Blocks</span></a>
-                    <ul>
-                        <li>
-                            <a href="be_blocks.html">Styles</a>
-                        </li>
-                        <li>
-                            <a href="be_blocks_draggable.html">Draggable</a>
-                        </li>
-                        <li>
-                            <a href="be_blocks_api.html">API</a>
-                        </li>
-                    </ul>
+                    <a href="#"><i class="fa fa-inbox"></i><span class="sidebar-mini-hide">Barang</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-cube"></i><span class="sidebar-mini-hide">Supplier</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="si si-wallet"></i><span class="sidebar-mini-hide">Biaya</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="si si-users"></i><span class="sidebar-mini-hide">User</span></a>
+                </li>
+                <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span class="sidebar-mini-hidden">Transaksi</span></li>
+                <li>
+                    <a href="#"><i class="fa fa-cart-plus"></i><span class="sidebar-mini-hide">Pembelian</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-cart-arrow-down"></i><span class="sidebar-mini-hide">Penjualan</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-edit"></i><span class="sidebar-mini-hide">Biaya</span></a>
+                </li>
+                <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span class="sidebar-mini-hidden">Laporan</span></li>
+                <li>
+                    <a href="#"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Kas</span></a>
                 </li>
 
             </ul>
