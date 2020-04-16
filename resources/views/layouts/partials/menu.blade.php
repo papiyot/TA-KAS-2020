@@ -79,16 +79,16 @@
                 </li>
                 <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span class="sidebar-mini-hidden">Master</span></li>
                 <li>
-                    <a href="#"><i class="fa fa-inbox"></i><span class="sidebar-mini-hide">Barang</span></a>
+                    <a href="{{ route('master',['barang']) }}"><i class="fa fa-inbox"></i><span class="sidebar-mini-hide">Barang</span></a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-cube"></i><span class="sidebar-mini-hide">Supplier</span></a>
+                    <a href="{{ route('master',['supplier']) }}"><i class="fa fa-cube"></i><span class="sidebar-mini-hide">Supplier</span></a>
                 </li>
                 <li>
-                    <a href="#"><i class="si si-wallet"></i><span class="sidebar-mini-hide">Biaya</span></a>
+                    <a href="{{ route('master',['biaya']) }}"><i class="si si-wallet"></i><span class="sidebar-mini-hide">Biaya</span></a>
                 </li>
                 <li>
-                    <a href="#"><i class="si si-users"></i><span class="sidebar-mini-hide">User</span></a>
+                    <a href="{{ route('master',['users']) }}"><i class="si si-users"></i><span class="sidebar-mini-hide">Users</span></a>
                 </li>
                 <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span class="sidebar-mini-hidden">Transaksi</span></li>
                 <li>
