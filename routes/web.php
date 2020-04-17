@@ -34,13 +34,13 @@ Route::get('/uuid',function (){
 //    $encrypted = Crypt::encryptString('$2y$10$6ZG.ddsAfXfzqsheaGArWupnXmUakDZdcPxt5Y7UqcfskfUsfkqQG');
 
 //     return $decrypted = Crypt::decryptString($encrypted);
-    try {
-        return $decrypted = decrypt('$2y$10$6ZG.ddsAfXfzqsheaGArWupnXmUakDZdcPxt5Y7UqcfskfUsfkqQG');
-    } catch (DecryptException $e) {
-        return 'error';
-    }
+//    try {
+//        return $decrypted = decrypt('$2y$10$6ZG.ddsAfXfzqsheaGArWupnXmUakDZdcPxt5Y7UqcfskfUsfkqQG');
+//    } catch (DecryptException $e) {
+//        return 'error';
+//    }
 
-    return Helper::getCode('users', 'id','US-');
+    return Helper::getCode('biaya', 'biaya_id','BY-');
 
 
 

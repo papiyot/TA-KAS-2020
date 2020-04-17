@@ -12,7 +12,7 @@ class Helper
         return 'Rp. ' . number_format($p,2,'.',',');
     }
     public static function getCode($table, $field, $code){
-        $data = DB::table($table)->orderBy($field, 'DESC')->first();
+        $data = DB::table($table)->orderBy('created_at', 'DESC')->first();
         if(is_null($data)){
             return $code.'1';
         }
