@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Open Graph Meta -->
-    <meta property="og:title" content="SIA-KAS | Login">
+    <meta property="og:title" content="SIA-KAS | @yield('title')">
     <meta property="og:site_name" content="SIA-KAS">
     <meta property="og:description" content="Sistem Informasi Akuntansi Kas">
     <meta property="og:type" content="website">

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Helpers\Helper;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Contracts\Encryption\DecryptException;
+use Carbon\Carbon;
 
 
 /*
@@ -18,7 +19,7 @@ use Illuminate\Contracts\Encryption\DecryptException;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.PenjualanTransaksi');
 });
 
 Auth::routes();
@@ -29,6 +30,8 @@ Route::get('/master/{table}/{id?}', 'MasterController@view')->name('master');
 Route::get('/delete/{table}/{id?}', 'MasterController@delete')->name('delete');
 
 Route::get('/uuid',function (){
+//    Carbon::now()->setLocale('id');
+    return $now = Carbon::now()->translatedFormat('d F Y');
      $data = DB::table('users')->where('id', 'US-1')->first();
 //     return response($data);
 //    $encrypted = Crypt::encryptString('$2y$10$6ZG.ddsAfXfzqsheaGArWupnXmUakDZdcPxt5Y7UqcfskfUsfkqQG');
