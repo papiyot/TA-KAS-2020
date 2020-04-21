@@ -16,8 +16,8 @@ class CreatejualDetailTable extends Migration
         Schema::create('jual_detail', function (Blueprint $table) {
             $table->string('jual_detail_id')->primary();
             $table->decimal('jual_detail_jml', 15,2);
-            $table->float('jual_detail_harga');
-            $table->string('jual_detail_jual_id');
+            $table->double('jual_detail_harga',15);
+            $table->string('jual_detail_jual_id')->nullable();
             $table->foreign('jual_detail_jual_id')->references('jual_id')->on('jual')->onUpdate('cascade')->onDelete('cascade');
             $table->string('jual_detail_barang_id');
             $table->foreign('jual_detail_barang_id')->references('barang_id')->on('barang')->onUpdate('cascade')->onDelete('cascade');

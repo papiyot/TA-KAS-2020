@@ -19,7 +19,8 @@ use Carbon\Carbon;
 */
 
 Route::get('/', function () {
-    return view('pages.PenjualanTransaksi');
+//    return view('pages.PenjualanTransaksi');
+    return view('welcome');
 });
 
 Auth::routes();
@@ -28,6 +29,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/master/store/{table}/{code}', 'MasterController@store')->name('master.store');
 Route::get('/master/{table}/{id?}', 'MasterController@view')->name('master');
 Route::get('/delete/{table}/{id?}', 'MasterController@delete')->name('delete');
+Route::get('/penjualan/list/{id?}', 'JualController@list')->name('jual.list');
+Route::get('/penjualan/transaksi/{id?}', 'JualController@transaksi')->name('jual.transaksi');
+
+Route::get('/pembelian/list/{id?}', 'BeliController@list')->name('beli.list');
+Route::get('/pembelian/transaksi/{id?}', 'BeliController@transaksi')->name('beli.transaksi');
 
 Route::get('/uuid',function (){
 //    Carbon::now()->setLocale('id');

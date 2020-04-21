@@ -16,33 +16,33 @@
             <div class="block-content">
                 <form action="{{ route('master.store',['users', 'US-']) }}" method="post" > @csrf
                     <div class="form-group row">
-                        <div class="col-12 col-md-6 col-sm-4">
+                        <div class="col-12 col-sm-6 col-md-4 ">
                             <div class="form-material floating">
                                 <input type="text" required class="form-control" id="name" name="name" value="@php echo ($data->edit) ? $data->edit->name: ''; @endphp">
                                 <label for="name">Nama</label>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 col-sm-4">
+                        <div class="col-12 col-sm-6 col-md-4 ">
                             <div class="form-material floating">
                                 <input type="email" required class="form-control" id="email" name="email" value="@php echo ($data->edit) ? $data->edit->email: ''; @endphp">
                                 <label for="email">Email</label>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 col-sm-4">
+                        <div class="col-12 col-sm-6 col-md-4 ">
                             <div class="form-material floating">
                                 <input type="password" required class="form-control" id="password" name="password" >
                                 <label for="password">Password</label>
                             </div>
                         </div>
                         @if($data->action=='Edit')
-                            <div class="col-12 col-md-6 col-sm-4">
+                            <div class="col-12 col-sm-6 col-md-6 ">
                                 <div class="form-material floating">
                                     <input type="password" class="form-control" id="password_baru" name="password_baru" >
-                                    <label for="password_baru">Password Baru <span>(Jika tidak merubah password dikosongkan)</span></label>
+                                    <label class="text-sm-left" for="password_baru">Password Baru (Change Password)</label>
                                 </div>
                             </div>
                         @endif
-                        <div class="col-12 col-md-6 col-sm-4">
+                        <div class="col-12 col-sm-6 col-md-6 ">
                             <div class="form-material floating">
                                 <input type="hidden" class="form-control" id="id" name="id" value="@php echo ($data->edit) ? $data->edit->id: ''; @endphp" >
                                 <select type="text" required class="form-control" id="jabatan" name="jabatan">
@@ -55,7 +55,12 @@
                                 <label for="barang_harga">Jabatan</label>
                             </div>
                         </div>
-
+                        @if($data->action=='Edit')
+                        <div class="col-12">
+                            <span><br></span>
+                            <span class="text-right font-w600 text-danger" >* Password baru berguna untuk merubah password, kosongkan jika tidak ingin merubah password.</span>
+                        </div>
+                        @endif
                     </div>
 
 
@@ -81,13 +86,13 @@
                 <h3 class="block-title">Users Table</h3>
             </div>
             <div class="block-content">
-                <table class="table table-hover table-vcenter">
+                <table class="table table-bordered table-striped table-hover table-vcenter js-dataTable-full-pagination">
                     <thead>
                     <tr>
                         <th class="text-center" style="width: 50px;">#</th>
                         <th>NAMA</th>
-                        <th>Jabatan</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Email</th>
+                        <th class="d-none d-sm-table-cell" style="width: 15%;">Jabatan</th>
+                        <th class="d-none d-md-table-cell" style="width: 15%;">Email</th>
                         <th class="text-center" style="width: 100px;">Actions</th>
                     </tr>
                     </thead>
@@ -95,10 +100,10 @@
                     @php $no=1; @endphp
                     @foreach($data->list as $list)
                     <tr>
-                        <th class="text-center" scope="row">{{$no}}</th>
+                        <td class="text-center" scope="row">{{$no}}</td>
                         <td>{{$list->name}}</td>
-                        <td>{{$list->jabatan}}</td>
-                        <td class="d-none d-sm-table-cell">{{$list->email}}</td>
+                        <td class="d-none d-sm-table-cell" style="width: 15%;">{{$list->jabatan}}</td>
+                        <td class="d-none d-md-table-cell">{{$list->email}}</td>
                         <td class="text-center">
                             <div class="btn-group">
                                 <a href="{{ route('master',['users', $list->id]) }}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">

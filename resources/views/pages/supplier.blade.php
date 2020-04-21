@@ -16,20 +16,20 @@
             <div class="block-content">
                 <form action="{{ route('master.store',['supplier', 'SP-']) }}" method="post" > @csrf
                     <div class="form-group row">
-                        <div class="col-12 col-md-6 col-sm-4">
+                        <div class="col-12 col-sm-6 col-md-4 ">
                             <div class="form-material floating">
                                 <input type="hidden" class="form-control" id="supplier_id" name="supplier_id" value="@php echo ($data->edit) ? $data->edit->supplier_id: ''; @endphp" >
                                 <input type="text" class="form-control" id="supplier_nama" name="supplier_nama" value="@php echo ($data->edit) ? $data->edit->supplier_nama: ''; @endphp">
                                 <label for="supplier_nama">Nama Supplier</label>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 col-sm-4">
+                        <div class="col-12 col-sm-6 col-md-4 ">
                             <div class="form-material floating">
                                 <input type="text" class="form-control" id="supplier_telp" name="supplier_telp" value="@php echo ($data->edit) ? $data->edit->supplier_telp: ''; @endphp">
                                 <label for="supplier_telp">Telp Supplier</label>
                             </div>
                         </div>
-                        <div class="col-12 col-md-12 col-sm-4">
+                        <div class="col-12 col-sm-12 col-md-4 ">
                             <div class="form-material floating">
                                 <textarea type="text" class="form-control" id="supplier_alamat" name="supplier_alamat" >@php echo ($data->edit) ? $data->edit->supplier_alamat: ''; @endphp</textarea>
                                 <label for="supplier_alamat">Alamat Supplier</label>
@@ -63,8 +63,8 @@
                     <tr>
                         <th class="text-center" style="width: 50px;">#</th>
                         <th>NAMA</th>
-                        <th>Kontak</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Alamat</th>
+                        <th class="d-none d-sm-table-cell" style="width: 15%;">Kontak</th>
+                        <th class="d-none d-md-table-cell" style="width: 15%;">Alamat</th>
                         <th class="text-center" style="width: 100px;">Actions</th>
                     </tr>
                     </thead>
@@ -74,8 +74,8 @@
                             <tr>
                                 <td class="text-center" scope="row">{{$no}}</td>
                                 <td>{{$list->supplier_nama}}</td>
-                                <td>{{$list->supplier_telp}}</td>
-                                <td class="d-none d-sm-table-cell">{{$list->supplier_alamat}}</td>
+                                <td class="d-none d-sm-table-cell" style="width: 15%;">{{$list->supplier_telp}}</td>
+                                <td class="d-none d-md-table-cell" style="width: 15%;">{{$list->supplier_alamat}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <a href="{{ route('master',['supplier', $list->supplier_id]) }}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">

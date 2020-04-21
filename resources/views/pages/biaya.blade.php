@@ -51,8 +51,6 @@
                     <tr>
                         <th class="text-center" style="width: 50px;">#</th>
                         <th >NAMA</th>
-                        <th ></th>
-                        <th ></th>
                         <th class="text-center" style="width: 100px;">Actions</th>
                     </tr>
                     </thead>
@@ -62,8 +60,6 @@
                         <tr>
                             <td class="text-center" scope="row">{{$no}}</td>
                             <td >{{$list->biaya_nama}}</td>
-                            <td ></td>
-                            <td ></td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <a href="{{ route('master',['biaya', $list->biaya_id]) }}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">

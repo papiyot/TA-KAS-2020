@@ -16,7 +16,7 @@ class CreatejualTable extends Migration
         Schema::create('jual', function (Blueprint $table) {
             $table->string('jual_id')->primary();
             $table->date('jual_tgl');
-            $table->float('jual_total');
+            $table->double('jual_total',15);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))->nullable();
             $table->softDeletes('deleted_at');

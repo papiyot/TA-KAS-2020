@@ -16,8 +16,8 @@ class CreatebeliDetailTable extends Migration
         Schema::create('beli_detail', function (Blueprint $table) {
             $table->string('beli_detail_id')->primary();
             $table->decimal('beli_detail_jml', 15,2);
-            $table->float('beli_detail_harga');
-            $table->string('beli_detail_beli_id');
+            $table->double('beli_detail_harga',15);
+            $table->string('beli_detail_beli_id')->nullable();
             $table->foreign('beli_detail_beli_id')->references('beli_id')->on('beli')->onUpdate('cascade')->onDelete('cascade');
             $table->string('beli_detail_barang_id');
             $table->foreign('beli_detail_barang_id')->references('barang_id')->on('barang')->onUpdate('cascade')->onDelete('cascade');

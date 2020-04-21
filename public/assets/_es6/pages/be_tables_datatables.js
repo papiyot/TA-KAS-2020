@@ -36,9 +36,9 @@ class BeTableDatatables {
     static initDataTableFullPagination() {
         jQuery('.js-dataTable-full-pagination').dataTable({
             pagingType: "full_numbers",
-            columnDefs: [ { orderable: false, targets: [ 4 ] } ],
-            pageLength: 8,
-            lengthMenu: [[5, 8, 15, 20], [5, 8, 15, 20]],
+            columnDefs: [ { orderable: false, targets: [ 2 ] } ],
+            pageLength: 10,
+            lengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
             autoWidth: false
         });
     }

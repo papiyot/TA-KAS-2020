@@ -92,10 +92,10 @@
                 </li>
                 <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span class="sidebar-mini-hidden">Transaksi</span></li>
                 <li>
-                    <a href="#"><i class="fa fa-cart-plus"></i><span class="sidebar-mini-hide">Pembelian</span></a>
+                    <a href="{{ route('beli.list') }}"><i class="fa fa-cart-plus"></i><span class="sidebar-mini-hide">Pembelian</span></a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-cart-arrow-down"></i><span class="sidebar-mini-hide">Penjualan</span></a>
+                    <a href="{{ route('jual.list') }}"><i class="fa fa-cart-arrow-down"></i><span class="sidebar-mini-hide">Penjualan</span></a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-edit"></i><span class="sidebar-mini-hide">Biaya</span></a>
