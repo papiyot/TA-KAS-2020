@@ -1,44 +1,43 @@
 @extends('layouts.app')
-@section('title')Data Penjualan @endsection
+@section('title')Transaksi Pembelian @endsection
 @section('content')
     <div class="col-md-12">
         <div class="row row-deck gutters-tiny">
             <!-- Billing Address -->
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <div class="block block-themed block-rounded">
                     <div class="block-header bg-gd-primary">
-                        <h3 class="block-title">Penjualan</h3>
+                        <h3 class="block-title">Pembelian</h3>
                         <div class="block-options">
-                            20 April 2020
+                            {{$data->date}}
                         </div>
                     </div>
 
                     <div class="block-content">
-                        <form action="{{ route('master.store',['biaya', 'BY-']) }}" method="post" > @csrf
+                        <form action="{{ route('pembelian.barang_store') }}" method="post" > @csrf
                             <div class="form-group row">
-                                <div class="col-12 col-md-6 col-sm-6">
-                                    <div class="form-material floating">
-                                        <input type="hidden" class="form-control" id="biaya_id" name="biaya_id"  >
-                                        <input type="text" class="form-control" id="biaya_nama" name="biaya_nama" >
-                                        <label for="biaya_nama">Kode Barang</label>
+                                <div class="col-12 col-md-12 col-sm-12">
+                                    <div class="form-material">
+                                        <input type="hidden" class="form-control" id="beli_detail_id" name="beli_detail_id"  value="@php echo ($data->edit) ? $data->edit->beli_detail_id: ''; @endphp">
+                                        <select onchange="getharga(this)" class="js-select2 form-control" id="beli_detail_barang_id" name="beli_detail_barang_id" required style="width: 100%;" >
+                                            <option>--Pilih Data--</option>
+                                            @foreach($data->barang as $barang)
+                                            <option harga="{{$barang->barang_harga}}" value="{{$barang->barang_id}}" @php echo ($data->edit) ? ($data->edit->beli_detail_barang_id == $barang->barang_id) ? 'selected': '' : null; @endphp>{{$barang->barang_id}} [ {{$barang->barang_nama}} ]</option>
+                                            @endforeach
+                                        </select>
+                                        <label for="beli_detail_barang_id">Kode Barang</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-sm-6">
-                                    <div class="form-material floating">
-                                        <input type="text" class="form-control" id="barang_nama" name="barang_nama" >
-                                        <label for="barang_nama">Nama Barang</label>
+                                    <div class="form-material">
+                                        <input type="number" class="form-control" id="beli_detail_harga" value="@php echo ($data->edit) ? $data->edit->beli_detail_harga: ''; @endphp" name="beli_detail_harga" required >
+                                        <label for="beli_detail_harga">Harga Barang</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-sm-6">
-                                    <div class="form-material floating">
-                                        <input type="number" class="form-control" id="barang_harga" name="barang_harga" >
-                                        <label for="barang_harga">Harga Barang</label>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-sm-6">
-                                    <div class="form-material floating">
-                                        <input type="number" class="form-control" id="barang_harga_presentase" name="barang_harga_presentase" >
-                                        <label for="barang_harga_presentase">Jumlah</label>
+                                    <div class="form-material">
+                                        <input type="number" class="form-control" id="beli_detail_jml" value="@php echo ($data->edit) ? $data->edit->beli_detail_jml: ''; @endphp" name="beli_detail_jml" required >
+                                        <label for="beli_detail_jml">Jumlah</label>
                                     </div>
                                 </div>
                             </div>
@@ -61,23 +60,43 @@
             <!-- END Billing Address -->
 
             <!-- Shipping Address -->
-            <div class="col-md-3">
+            <div class="col-md-4">
 
-                    <a class="block block-rounded block-transparent bg-gd-primary" href="javascript:void(0)">
-                        <div class="block-header"></div>
-                        <div class="block-content block-content-full block-sticky-options">
-
-
-                                <i class="d-flex justify-content-center fa fa-shopping-cart fa-5x text-body-bg-dark"></i>
-                            <div class="d-flex justify-content-center font-size-h3 font-w700 text-uppercase text-white-op">Rp. 99.600.300</div>
+                    <div class="block block-rounded bg-gd-primary" >
+                        <div class="block-content block-content-full ">
+                            <span class="text-body-bg-dark font-w700 d-flex justify-content-center text-uppercase">Selesaikan Transaksi</span>
+                            <form action="{{ route('beli.store') }}" method="post" > @csrf
+                                <input type="hidden" class="form-control" id="beli_id" name="beli_id" >
+                                <input type="hidden" class="form-control" id="beli_total" name="beli_total" value="{{$data->total}}">
+                                <div class="form-group row">
+                                    <div class="col-12 col-sm-6 col-md-6 ">
+                                        <div class="form-material floating">
+                                            <input type="text" class="form-control text-body-bg-dark" required id="beli_nota" name="beli_nota" >
+                                            <label for="beli_nota" class="text-body-bg-dark">Nota</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6 col-md-6 ">
+                                        <div class="form-material floating">
+                                            <select class="js-select2 form-control select2-text-body-bg-dark" required id="beli_supplier_id" name="beli_supplier_id" style="width: 100%;" >
+                                                <option></option>
+                                                @foreach($data->supplier as $supplier)
+                                                    <option  value="{{$supplier->supplier_id}}"> {{$supplier->supplier_nama}} </option>
+                                                @endforeach
+                                            </select>
+                                            <label for="beli_supplier_id" class="text-body-bg-dark">Supplier</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            <i class="d-flex justify-content-center fa fa-shopping-cart fa-5x text-body-bg-dark"></i>
+                            <div class="d-flex justify-content-center font-size-h3 font-w700 text-white-op">@rp($data->total)</div>
                             <div class="col-12 d-flex justify-content-center">
-                                <button class="d-flex justify-content-center btn btn-alt-primary">
+                                <button type="submit"  @if($data->total==0) {{'disabled'}} @endif class="d-flex justify-content-center btn btn-alt-primary">
                                     <i class="fa fa-cc-paypal mr-5"></i> Bayar
                                 </button>
                             </div>
-
+                            </form>
                         </div>
-                    </a>
+                    </div>
 
             </div>
             <!-- END Shipping Address -->
@@ -92,91 +111,65 @@
                     <table class="table table-borderless table-striped">
                         <thead>
                         <tr>
-                            <th style="width: 100px;">ID</th>
-                            <th>Product</th>
-                            <th class="text-center">Stock</th>
-                            <th class="text-center">QTY</th>
-                            <th class="text-right" style="width: 10%;">UNIT</th>
-                            <th class="text-right" style="width: 10%;">PRICE</th>
+                            <th class="text-center" style="width: 50px;">#</th>
+                            <th>Barang</th>
+                            <th class="text-center" style="width: 10%;">QTY</th>
+                            <th class="text-right" style="width: 10%;">@harga</th>
+                            <th class="text-right" style="width: 10%;">Total</th>
+                            <th class="text-center table-secondary" style="width: 100px;">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
+                        @php $no=1; @endphp
+                        @foreach($data->list as $list)
                         <tr>
-                            <td>
-                                <a class="font-w600" href="be_pages_ecom_product_edit.html">PID.258</a>
+                            <td class="font-w600 text-center">{{$no}}</td>
+                            <td class="font-w600 text-uppercase text-primary">{{$list->barang_nama}} </td>
+                            <td class="text-center">{{$list->beli_detail_jml}}</td>
+                            <td class="text-right">@rp($list->beli_detail_harga)</td>
+                            <td class="text-right">@rp($list->beli_detail_harga*$list->beli_detail_jml)</td>
+                            <td class="text-center table-secondary">
+                                <div class="btn-group">
+                                    <a href="{{ route('beli.transaksi',[$list->beli_detail_id]) }}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                    <a class="btn btn-sm btn-danger" data-toggle="confirmation" data-popout="true" data-title="Hapus Data ini?"
+                                       href="{{ route('pembelian.barang_delete',[$list->beli_detail_id]) }}" ><i class="fa fa-times"></i></a>
+                                </div>
                             </td>
-                            <td>
-                                <a href="be_pages_ecom_product_edit.html">Dark Souls III</a>
-                            </td>
-                            <td class="text-center">92</td>
-                            <td class="text-center font-w600">1</td>
-                            <td class="text-right">$69,00</td>
-                            <td class="text-right">$69,00</td>
                         </tr>
-                        <tr>
-                            <td>
-                                <a class="font-w600" href="be_pages_ecom_product_edit.html">PID.263</a>
-                            </td>
-                            <td>
-                                <a href="be_pages_ecom_product_edit.html">Bloodborne</a>
-                            </td>
-                            <td class="text-center">32</td>
-                            <td class="text-center font-w600">1</td>
-                            <td class="text-right">$29,00</td>
-                            <td class="text-right">$29,00</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="font-w600" href="be_pages_ecom_product_edit.html">PID.214</a>
-                            </td>
-                            <td>
-                                <a href="be_pages_ecom_product_edit.html">The Surge</a>
-                            </td>
-                            <td class="text-center">15</td>
-                            <td class="text-center font-w600">1</td>
-                            <td class="text-right">$59,00</td>
-                            <td class="text-right">$59,00</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="font-w600" href="be_pages_ecom_product_edit.html">PID.358</a>
-                            </td>
-                            <td>
-                                <a href="be_pages_ecom_product_edit.html">Bioshock Collection</a>
-                            </td>
-                            <td class="text-center">77</td>
-                            <td class="text-center font-w600">1</td>
-                            <td class="text-right">$39,00</td>
-                            <td class="text-right">$39,00</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a class="font-w600" href="be_pages_ecom_product_edit.html">PID.425</a>
-                            </td>
-                            <td>
-                                <a href="be_pages_ecom_product_edit.html">Until Dawn</a>
-                            </td>
-                            <td class="text-center">25</td>
-                            <td class="text-center font-w600">1</td>
-                            <td class="text-right">$49,00</td>
-                            <td class="text-right">$49,00</td>
-                        </tr>
-                        <tr>
-                            <td colspan="5" class="text-right font-w600">Total Price:</td>
-                            <td class="text-right">$245,00</td>
-                        </tr>
-                        <tr>
-                            <td colspan="5" class="text-right font-w600">Total Paid:</td>
-                            <td class="text-right">$245,00</td>
-                        </tr>
-                        <tr class="table-primary">
-                            <td colspan="5" class="text-right font-w600 text-uppercase">Total Due:</td>
-                            <td class="text-right font-w600">$0,00</td>
-                        </tr>
+                        @php $no++; @endphp @endforeach
+                        @if($data->total==0)
+                            <tr class="table-secondary">
+                                <td colspan="6" class="text-left font-w600 text-uppercase">Data Kosong</td>
+                            </tr>
+                        @else
+                            <tr class="table-primary">
+                                <td colspan="4" class="text-right font-w600 text-uppercase">Total Pembelian</td>
+                                <td class="text-right font-w600">@rp($data->total)</td>
+                                <td class="text-center table-secondary"></td>
+                            </tr>
+                         @endif
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script>
+        // function harga(x) {
+        //     console.log('harga', x);
+        // }
+        function getharga(sel) {
+            let harga = $( "#beli_detail_barang_id option:selected" ).attr('harga');
+            console.log('myFunction', harga);
+            $('#beli_detail_harga').val(harga);
+            // document.getElementById("beli_detail_harga").value = harga;
+            console.log('myFunction', sel);
+            // console.log('myFunction', sel.options[sel.selectedIndex]);
+        }
+    </script>
 @endsection

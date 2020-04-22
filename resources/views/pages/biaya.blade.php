@@ -19,7 +19,7 @@
                         <div class="col-12 col-md-12 col-sm-12">
                             <div class="form-material floating">
                                 <input type="hidden" class="form-control" id="biaya_id" name="biaya_id" value="@php echo ($data->edit) ? $data->edit->biaya_id: ''; @endphp" >
-                                <input type="text" class="form-control" id="biaya_nama" name="biaya_nama" value="@php echo ($data->edit) ? $data->edit->biaya_nama: ''; @endphp">
+                                <input type="text" class="form-control" id="biaya_nama" name="biaya_nama" required value="@php echo ($data->edit) ? $data->edit->biaya_nama: ''; @endphp">
                                 <label for="biaya_nama">Nama Supplier</label>
                             </div>
                         </div>

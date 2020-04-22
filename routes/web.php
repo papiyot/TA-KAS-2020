@@ -34,6 +34,9 @@ Route::get('/penjualan/transaksi/{id?}', 'JualController@transaksi')->name('jual
 
 Route::get('/pembelian/list/{id?}', 'BeliController@list')->name('beli.list');
 Route::get('/pembelian/transaksi/{id?}', 'BeliController@transaksi')->name('beli.transaksi');
+Route::post('/pembelian/transaksi/store', 'BeliController@store')->name('beli.store');
+Route::post('/pembelian/transaksi/barang_store', 'BeliController@barang_store')->name('pembelian.barang_store');
+Route::get('/pembelian/transaksi/barang_delete/{id}', 'BeliController@barang_delete')->name('pembelian.barang_delete');
 
 Route::get('/uuid',function (){
 //    Carbon::now()->setLocale('id');

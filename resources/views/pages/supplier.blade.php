@@ -19,19 +19,19 @@
                         <div class="col-12 col-sm-6 col-md-4 ">
                             <div class="form-material floating">
                                 <input type="hidden" class="form-control" id="supplier_id" name="supplier_id" value="@php echo ($data->edit) ? $data->edit->supplier_id: ''; @endphp" >
-                                <input type="text" class="form-control" id="supplier_nama" name="supplier_nama" value="@php echo ($data->edit) ? $data->edit->supplier_nama: ''; @endphp">
+                                <input type="text" class="form-control" id="supplier_nama" name="supplier_nama" required value="@php echo ($data->edit) ? $data->edit->supplier_nama: ''; @endphp">
                                 <label for="supplier_nama">Nama Supplier</label>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-md-4 ">
                             <div class="form-material floating">
-                                <input type="text" class="form-control" id="supplier_telp" name="supplier_telp" value="@php echo ($data->edit) ? $data->edit->supplier_telp: ''; @endphp">
+                                <input type="text" class="form-control" id="supplier_telp" name="supplier_telp" required value="@php echo ($data->edit) ? $data->edit->supplier_telp: ''; @endphp">
                                 <label for="supplier_telp">Telp Supplier</label>
                             </div>
                         </div>
                         <div class="col-12 col-sm-12 col-md-4 ">
                             <div class="form-material floating">
-                                <textarea type="text" class="form-control" id="supplier_alamat" name="supplier_alamat" >@php echo ($data->edit) ? $data->edit->supplier_alamat: ''; @endphp</textarea>
+                                <textarea type="text" class="form-control" id="supplier_alamat" name="supplier_alamat" required >@php echo ($data->edit) ? $data->edit->supplier_alamat: ''; @endphp</textarea>
                                 <label for="supplier_alamat">Alamat Supplier</label>
                             </div>
                         </div>

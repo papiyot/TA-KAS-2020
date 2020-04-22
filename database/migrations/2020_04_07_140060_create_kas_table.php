@@ -32,6 +32,6 @@ class CreatekasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jual_detail');
+        Schema::dropIfExists('kas');
     }
 }
