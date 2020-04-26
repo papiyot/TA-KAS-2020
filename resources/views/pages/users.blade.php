@@ -86,37 +86,39 @@
                 <h3 class="block-title">Users Table</h3>
             </div>
             <div class="block-content">
-                <table class="table table-bordered table-striped table-hover table-vcenter js-dataTable-full-pagination">
-                    <thead>
-                    <tr>
-                        <th class="text-center" style="width: 50px;">#</th>
-                        <th>NAMA</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Jabatan</th>
-                        <th class="d-none d-md-table-cell" style="width: 15%;">Email</th>
-                        <th class="text-center" style="width: 100px;">Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @php $no=1; @endphp
-                    @foreach($data->list as $list)
-                    <tr>
-                        <td class="text-center" scope="row">{{$no}}</td>
-                        <td>{{$list->name}}</td>
-                        <td class="d-none d-sm-table-cell" style="width: 15%;">{{$list->jabatan}}</td>
-                        <td class="d-none d-md-table-cell">{{$list->email}}</td>
-                        <td class="text-center">
-                            <div class="btn-group">
-                                <a href="{{ route('master',['users', $list->id]) }}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
-                                    <i class="fa fa-pencil"></i>
-                                </a>
-                                <a class="btn btn-sm btn-danger" data-toggle="confirmation" data-popout="true" data-title="Hapus Data ini?"
-                                   href="{{ route('delete',['users', $list->id]) }}" ><i class="fa fa-times"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    @php $no++; @endphp @endforeach
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover table-vcenter js-dataTable-full-pagination">
+                        <thead>
+                        <tr>
+                            <th class="text-center" style="width: 10%;">#</th>
+                            <th>NAMA</th>
+                            <th>Jabatan</th>
+                            <th>Email</th>
+                            <th class="text-center" style="width: 15%;">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @php $no=1; @endphp
+                        @foreach($data->list as $list)
+                            <tr>
+                                <td class="text-center">{{$no}}</td>
+                                <td class="font-w600 text-uppercase text-primary">{{$list->name}}</td>
+                                <td class="font-w600 text-uppercase text-secondary">{{$list->jabatan}}</td>
+                                <td class="font-w600">{{$list->email}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <a href="{{ route('master',['users', $list->id]) }}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                        <a class="btn btn-sm btn-danger" data-toggle="confirmation" data-popout="true" data-title="Hapus Data ini?"
+                                           href="{{ route('delete',['users', $list->id]) }}" ><i class="fa fa-times"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            @php $no++; @endphp @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

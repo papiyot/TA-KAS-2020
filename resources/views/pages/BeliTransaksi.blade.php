@@ -16,10 +16,10 @@
                     <div class="block-content">
                         <form action="{{ route('pembelian.barang_store') }}" method="post" > @csrf
                             <div class="form-group row">
-                                <div class="col-12 col-md-12 col-sm-12">
+                                <div class="col-12 col-sm-6 col-md-12">
                                     <div class="form-material">
                                         <input type="hidden" class="form-control" id="beli_detail_id" name="beli_detail_id"  value="@php echo ($data->edit) ? $data->edit->beli_detail_id: ''; @endphp">
-                                        <select onchange="getharga(this)" class="js-select2 form-control" id="beli_detail_barang_id" name="beli_detail_barang_id" required style="width: 100%;" >
+                                        <select onchange="getharga(this, 'beli_detail')" class="js-select2 form-control" id="beli_detail_barang_id" name="beli_detail_barang_id" required style="width: 100%;" >
                                             <option>--Pilih Data--</option>
                                             @foreach($data->barang as $barang)
                                             <option harga="{{$barang->barang_harga}}" value="{{$barang->barang_id}}" @php echo ($data->edit) ? ($data->edit->beli_detail_barang_id == $barang->barang_id) ? 'selected': '' : null; @endphp>{{$barang->barang_id}} [ {{$barang->barang_nama}} ]</option>
@@ -28,13 +28,13 @@
                                         <label for="beli_detail_barang_id">Kode Barang</label>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 col-sm-6">
+                                <div class="col-12 col-sm-6 col-md-6">
                                     <div class="form-material">
                                         <input type="number" class="form-control" id="beli_detail_harga" value="@php echo ($data->edit) ? $data->edit->beli_detail_harga: ''; @endphp" name="beli_detail_harga" required >
                                         <label for="beli_detail_harga">Harga Barang</label>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 col-sm-6">
+                                <div class="col-12 col-sm-6 col-md-6">
                                     <div class="form-material">
                                         <input type="number" class="form-control" id="beli_detail_jml" value="@php echo ($data->edit) ? $data->edit->beli_detail_jml: ''; @endphp" name="beli_detail_jml" required >
                                         <label for="beli_detail_jml">Jumlah</label>
@@ -145,9 +145,8 @@
                             </tr>
                         @else
                             <tr class="table-primary">
-                                <td colspan="4" class="text-right font-w600 text-uppercase">Total Pembelian</td>
-                                <td class="text-right font-w600">@rp($data->total)</td>
-                                <td class="text-center table-secondary"></td>
+                                <td colspan="4" class="text-right font-w600 text-uppercase">Total Pembelian :</td>
+                                <td colspan="2" class="text-left font-w600">@rp($data->total)</td>
                             </tr>
                          @endif
                         </tbody>
@@ -158,18 +157,3 @@
     </div>
 @endsection
 
-@section('js')
-    <script>
-        // function harga(x) {
-        //     console.log('harga', x);
-        // }
-        function getharga(sel) {
-            let harga = $( "#beli_detail_barang_id option:selected" ).attr('harga');
-            console.log('myFunction', harga);
-            $('#beli_detail_harga').val(harga);
-            // document.getElementById("beli_detail_harga").value = harga;
-            console.log('myFunction', sel);
-            // console.log('myFunction', sel.options[sel.selectedIndex]);
-        }
-    </script>
-@endsection

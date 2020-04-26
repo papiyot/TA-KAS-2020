@@ -58,24 +58,25 @@
                 <h3 class="block-title">Supplier Table</h3>
             </div>
             <div class="block-content">
-                <table class="table table-bordered table-striped table-hover table-vcenter js-dataTable-full-pagination">
-                    <thead>
-                    <tr>
-                        <th class="text-center" style="width: 50px;">#</th>
-                        <th>NAMA</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Kontak</th>
-                        <th class="d-none d-md-table-cell" style="width: 15%;">Alamat</th>
-                        <th class="text-center" style="width: 100px;">Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover table-vcenter js-dataTable-full-pagination">
+                        <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th>NAMA</th>
+                            <th>Kontak</th>
+                            <th>Alamat</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         @php $no=1; @endphp
                         @foreach($data->list as $list)
                             <tr>
-                                <td class="text-center" scope="row">{{$no}}</td>
-                                <td>{{$list->supplier_nama}}</td>
-                                <td class="d-none d-sm-table-cell" style="width: 15%;">{{$list->supplier_telp}}</td>
-                                <td class="d-none d-md-table-cell" style="width: 15%;">{{$list->supplier_alamat}}</td>
+                                <td class="text-center">{{$no}}</td>
+                                <td class="font-w600 text-uppercase text-primary">{{$list->supplier_nama}}</td>
+                                <td>{{$list->supplier_telp}}</td>
+                                <td class="font-w300 font-size-sm text-uppercase text-secondary">{{$list->supplier_alamat}}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <a href="{{ route('master',['supplier', $list->supplier_id]) }}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
@@ -87,8 +88,9 @@
                                 </td>
                             </tr>
                             @php $no++; @endphp @endforeach
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

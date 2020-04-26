@@ -46,33 +46,35 @@
                 <h3 class="block-title">Biaya Table</h3>
             </div>
             <div class="block-content">
-                <table class="table table-bordered table-striped table-hover table-vcenter js-dataTable-full-pagination">
-                    <thead>
-                    <tr>
-                        <th class="text-center" style="width: 50px;">#</th>
-                        <th >NAMA</th>
-                        <th class="text-center" style="width: 100px;">Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @php $no=1; @endphp
-                    @foreach($data->list as $list)
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover table-vcenter js-dataTable-full-pagination">
+                        <thead>
                         <tr>
-                            <td class="text-center" scope="row">{{$no}}</td>
-                            <td >{{$list->biaya_nama}}</td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <a href="{{ route('master',['biaya', $list->biaya_id]) }}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
-                                        <i class="fa fa-pencil"></i>
-                                    </a>
-                                    <a class="btn btn-sm btn-danger" data-toggle="confirmation" data-popout="true" data-title="Hapus Data ini?"
-                                       href="{{ route('delete',['biaya', $list->biaya_id]) }}" ><i class="fa fa-times"></i></a>
-                                </div>
-                            </td>
+                            <th class="text-center" style="width: 10%;">#</th>
+                            <th >NAMA</th>
+                            <th class="text-center" style="width: 15%;">Actions</th>
                         </tr>
-                        @php $no++; @endphp @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        @php $no=1; @endphp
+                        @foreach($data->list as $list)
+                            <tr>
+                                <td class="text-center" >{{$no}}</td>
+                                <td class="font-w600 text-uppercase text-primary">{{$list->biaya_nama}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <a href="{{ route('master',['biaya', $list->biaya_id]) }}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                        <a class="btn btn-sm btn-danger" data-toggle="confirmation" data-popout="true" data-title="Hapus Data ini?"
+                                           href="{{ route('delete',['biaya', $list->biaya_id]) }}" ><i class="fa fa-times"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            @php $no++; @endphp @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

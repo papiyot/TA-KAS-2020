@@ -19,35 +19,37 @@
             </div>
             <div class="block-content">
                 <!-- Orders Table -->
-                <table class="table table-borderless table-striped js-dataTable-full-pagination">
-                    <thead>
-                    <tr>
-                        <th class="text-center" style="width: 50px;">#</th>
-                        <th>Nota</th>
-                        <th class="d-none d-md-table-cell">Tanggal</th>
-                        <th class="text-right">Total</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @php $no=1; @endphp
-                    @foreach($data->list as $list)
+                <div class="table-responsive">
+                    <table class="table table-borderless table-striped js-dataTable-full-pagination">
+                        <thead>
                         <tr>
-                            <td class="text-center font-w600 text-secondary text-uppercase" scope="row">
-                                {{$no}}
-                            </td>
-                            <td class="font-w600 text-primary text-uppercase">
-                                {{$list->jual_id}}
-                            </td>
-                            <td class="d-none d-md-table-cell font-w600 text-secondary text-uppercase">
-                                @date($list->jual_tgl)
-                            </td>
-                            <td class="text-right font-w600 text-primary ">
-                                @rp($list->jual_total)
-                            </td>
+                            <th class="text-center" style="width: 10%;">#</th>
+                            <th>Nota</th>
+                            <th>Tanggal</th>
+                            <th class="text-right">Total</th>
                         </tr>
-                        @php $no++; @endphp @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        @php $no=1; @endphp
+                        @foreach($data->list as $list)
+                            <tr>
+                                <td class="text-center font-w600 text-secondary text-uppercase">
+                                    {{$no}}
+                                </td>
+                                <td class="font-w600 text-primary text-uppercase">
+                                    {{$list->jual_id}}
+                                </td>
+                                <td class="font-w600 text-secondary text-uppercase">
+                                    @date($list->jual_tgl)
+                                </td>
+                                <td class="text-right font-w600 text-primary ">
+                                    @rp($list->jual_total)
+                                </td>
+                            </tr>
+                            @php $no++; @endphp @endforeach
+                        </tbody>
+                    </table>
+                </div>
                 <!-- END Orders Table -->
 
             </div>

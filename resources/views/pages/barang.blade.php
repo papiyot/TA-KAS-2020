@@ -72,41 +72,43 @@
                 <h3 class="block-title">Barang Table</h3>
             </div>
             <div class="block-content">
-                <table class="table table-bordered table-striped table-hover table-vcenter js-dataTable-full-pagination">
-                    <thead>
-                    <tr>
-                        <th class="text-center" style="width: 50px;">#</th>
-                        <th>NAMA</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">HARGA</th>
-                        <th class="d-none d-lg-table-cell" style="width: 15%;">% HARGA</th>
-                        <th class="d-none d-md-table-cell" style="width: 15%;">STOK</th>
-                        <th class="d-none d-md-table-cell" style="width: 15%;">SATUAN</th>
-                        <th class="text-center" style="width: 100px;">Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @php $no=1; @endphp
-                    @foreach($data->list as $list)
-                    <tr>
-                        <td class="text-center" scope="row">{{$no}}</td>
-                        <td>{{$list->barang_nama}}</td>
-                        <td class="d-none d-sm-table-cell" style="width: 15%;">{{$list->barang_harga}}</td>
-                        <td class="d-none d-lg-table-cell">{{$list->barang_harga_presentase}}</td>
-                        <td class="d-none d-md-table-cell">{{$list->barang_stok}}</td>
-                        <td class="d-none d-md-table-cell">{{$list->barang_satuan}}</td>
-                        <td class="text-center">
-                            <div class="btn-group">
-                                <a href="{{ route('master',['barang', $list->barang_id]) }}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
-                                    <i class="fa fa-pencil"></i>
-                                </a>
-                                <a class="btn btn-sm btn-danger" data-toggle="confirmation" data-popout="true" data-title="Hapus Data ini?"
-                                   href="{{ route('delete',['barang', $list->barang_id]) }}" ><i class="fa fa-times"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    @php $no++; @endphp @endforeach
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover table-vcenter js-dataTable-full-pagination">
+                        <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th>NAMA</th>
+                            <th class="text-right">HARGA</th>
+                            <th>% HARGA</th>
+                            <th>STOK</th>
+                            <th>SATUAN</th>
+                            <th class="text-center" >Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @php $no=1; @endphp
+                        @foreach($data->list as $list)
+                            <tr>
+                                <td class="text-center">{{$no}}</td>
+                                <td class="font-w600 text-uppercase text-primary">{{$list->barang_nama}}</td>
+                                <td class="text-right" style="width: 15%;">@rp($list->barang_harga)</td>
+                                <td >{{$list->barang_harga_presentase}}</td>
+                                <td >{{$list->barang_stok}}</td>
+                                <td class="text-uppercase">{{$list->barang_satuan}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <a href="{{ route('master',['barang', $list->barang_id]) }}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                        <a class="btn btn-sm btn-danger" data-toggle="confirmation" data-popout="true" data-title="Hapus Data ini?"
+                                           href="{{ route('delete',['barang', $list->barang_id]) }}" ><i class="fa fa-times"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            @php $no++; @endphp @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

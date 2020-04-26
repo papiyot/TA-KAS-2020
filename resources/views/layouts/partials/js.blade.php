@@ -10,15 +10,14 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-confirmation2/dist/bootstrap-confirmation.min.js"></script>
 <script>jQuery(function(){ Codebase.helpers(['select2']); });</script>
 <script>
+    function getharga(sel, param) {
+        let harga = $( "#"+param+"_barang_id option:selected" ).attr('harga');
+        $("#"+param+"_harga").val(harga);
+    }
+</script>
+<script>
     $('[data-toggle=confirmation]').confirmation({
         rootSelector: '[data-toggle=confirmation]',
-        // other options
     });
-    // Swal.fire({
-    //     title: 'Error!',
-    //     text: 'Do you want to continue',
-    //     icon: 'error',
-    //     confirmButtonText: 'Cool'
-    // })
 </script>
 @yield('js')

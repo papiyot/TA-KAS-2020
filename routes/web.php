@@ -29,14 +29,22 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/master/store/{table}/{code}', 'MasterController@store')->name('master.store');
 Route::get('/master/{table}/{id?}', 'MasterController@view')->name('master');
 Route::get('/delete/{table}/{id?}', 'MasterController@delete')->name('delete');
+
 Route::get('/penjualan/list/{id?}', 'JualController@list')->name('jual.list');
 Route::get('/penjualan/transaksi/{id?}', 'JualController@transaksi')->name('jual.transaksi');
+Route::post('/penjualan/transaksi/store', 'JualController@store')->name('jual.store');
+Route::post('/penjualan/transaksi/barang_store', 'JualController@barang_store')->name('penjualan.barang_store');
+Route::get('/penjualan/transaksi/barang_delete/{id}', 'JualController@barang_delete')->name('penjualan.barang_delete');
 
 Route::get('/pembelian/list/{id?}', 'BeliController@list')->name('beli.list');
 Route::get('/pembelian/transaksi/{id?}', 'BeliController@transaksi')->name('beli.transaksi');
 Route::post('/pembelian/transaksi/store', 'BeliController@store')->name('beli.store');
 Route::post('/pembelian/transaksi/barang_store', 'BeliController@barang_store')->name('pembelian.barang_store');
 Route::get('/pembelian/transaksi/barang_delete/{id}', 'BeliController@barang_delete')->name('pembelian.barang_delete');
+
+Route::get('/biaya/transaksi/{id?}', 'BiayaController@transaksi')->name('biayatransaksi.transaksi');
+Route::post('/biaya/transaksi/store', 'BiayaController@store')->name('biayatransaksi.store');
+Route::get('/biaya/transaksi/delete/{id}', 'BiayaController@delete')->name('biayatransaksi.delete');
 
 Route::get('/uuid',function (){
 //    Carbon::now()->setLocale('id');
