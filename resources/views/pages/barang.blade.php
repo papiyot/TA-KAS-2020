@@ -25,14 +25,14 @@
                         </div>
                         <div class="col-12 col-sm-6 col-md-4 ">
                             <div class="form-material floating">
-                                <input type="number" class="form-control" id="barang_harga" name="barang_harga" required value="@php echo ($data->edit) ? $data->edit->barang_harga: ''; @endphp">
-                                <label for="barang_harga">Harga Barang</label>
+                                <input type="number" class="form-control" id="barang_harga_pembelian" name="barang_harga_pembelian" required value="@php echo ($data->edit) ? $data->edit->barang_harga_pembelian: ''; @endphp">
+                                <label for="barang_harga_pembelian">Harga Pembelian</label>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-md-4 ">
                             <div class="form-material floating">
-                                <input type="number" class="form-control" id="barang_harga_presentase" name="barang_harga_presentase" required value="@php echo ($data->edit) ? $data->edit->barang_harga_presentase: ''; @endphp">
-                                <label for="barang_harga_presentase">Harga Persentase Barang</label>
+                                <input type="number" class="form-control" id="barang_harga_penjualan" name="barang_harga_penjualan" required value="@php echo ($data->edit) ? $data->edit->barang_harga_penjualan: ''; @endphp">
+                                <label for="barang_harga_penjualan">Harga Penjualan</label>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-md-4 ">
@@ -78,8 +78,8 @@
                         <tr>
                             <th class="text-center">#</th>
                             <th>NAMA</th>
-                            <th class="text-right">HARGA</th>
-                            <th>% HARGA</th>
+                            <th class="text-right">HARGA PEMBELIAN</th>
+                            <th class="text-right">HARGA PENJUALAN</th>
                             <th>STOK</th>
                             <th>SATUAN</th>
                             <th class="text-center" >Actions</th>
@@ -91,8 +91,8 @@
                             <tr>
                                 <td class="text-center">{{$no}}</td>
                                 <td class="font-w600 text-uppercase text-primary">{{$list->barang_nama}}</td>
-                                <td class="text-right" style="width: 15%;">@rp($list->barang_harga)</td>
-                                <td >{{$list->barang_harga_presentase}}</td>
+                                <td class="text-right" style="width: 15%;">@rp($list->barang_harga_pembelian)</td>
+                                <td class="text-right" style="width: 15%;">@rp($list->barang_harga_penjualan)</td>
                                 <td >{{$list->barang_stok}}</td>
                                 <td class="text-uppercase">{{$list->barang_satuan}}</td>
                                 <td class="text-center">

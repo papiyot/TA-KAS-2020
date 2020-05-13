@@ -16,8 +16,8 @@ class CreateBarangTable extends Migration
         Schema::create('barang', function (Blueprint $table) {
             $table->string('barang_id')->primary();
             $table->string('barang_nama');
-            $table->double('barang_harga',15);
-            $table->double('barang_harga_presentase',15);
+            $table->double('barang_harga_pembelian',15);
+            $table->double('barang_harga_penjualan',15);
             $table->string('barang_satuan');
             $table->decimal('barang_stok', 15,2);
             $table->timestamp('created_at')->useCurrent();

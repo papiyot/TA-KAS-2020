@@ -66,4 +66,16 @@ class JualController extends Controller
         DB::table('jual_detail')->where('jual_detail_id', $id)->delete();
         return redirect('penjualan/transaksi');
     }
+
+    public function faktur( $id)
+    {
+        $data =  new \stdClass();
+        $jual = DB::table('jual')->where('jual_id', $id)->first();
+        $data->edit = $id;
+        $data->list = DB::table('jual_detail')->join('barang', 'barang_id', 'jual_detail_barang_id')->where('jual_detail_jual_id', $id)->get();
+        $data->date = $jual->jual_tgl;
+        $data->total = $jual->jual_total;
+
+        return view('pages.JualTransaksiDetail',  compact('data'));
+    }
 }

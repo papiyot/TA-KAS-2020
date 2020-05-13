@@ -24,9 +24,11 @@
                         <thead>
                         <tr>
                             <th class="text-center" style="width: 10%;">#</th>
-                            <th>Nota</th>
+                            <th>No Faktur</th>
                             <th>Supplier</th>
                             <th>Tanggal</th>
+                            <th class="text-right">Pembelian</th>
+                            <th class="text-right">Retur</th>
                             <th class="text-right">Total</th>
                         </tr>
                         </thead>
@@ -38,7 +40,7 @@
                                     {{$no}}
                                 </td>
                                 <td class="font-w600 text-primary text-uppercase">
-                                    {{$list->beli_nota}}
+                                    <a href="{{ route('beli.faktur',[$list->beli_id]) }}">{{$list->beli_id}}</a>
                                 </td>
                                 <td class="font-w600 text-secondary text-uppercase">
                                     {{$list->supplier_nama}}
@@ -48,6 +50,12 @@
                                 </td>
                                 <td class="text-right font-w600 text-secondary ">
                                     @rp($list->beli_total)
+                                </td>
+                                <td class="text-right font-w600 text-secondary ">
+                                    @rp($list->beli_retur)
+                                </td>
+                                <td class="text-right font-w600 text-secondary ">
+                                    @rp($list->beli_total-$list->beli_retur)
                                 </td>
                             </tr>
                             @php $no++; @endphp @endforeach

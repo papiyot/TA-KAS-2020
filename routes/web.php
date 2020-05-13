@@ -32,12 +32,15 @@ Route::get('/delete/{table}/{id?}', 'MasterController@delete')->name('delete');
 
 Route::get('/penjualan/list/{id?}', 'JualController@list')->name('jual.list');
 Route::get('/penjualan/transaksi/{id?}', 'JualController@transaksi')->name('jual.transaksi');
+Route::get('/penjualan/faktur/{id?}', 'JualController@faktur')->name('jual.faktur');
 Route::post('/penjualan/transaksi/store', 'JualController@store')->name('jual.store');
 Route::post('/penjualan/transaksi/barang_store', 'JualController@barang_store')->name('penjualan.barang_store');
 Route::get('/penjualan/transaksi/barang_delete/{id}', 'JualController@barang_delete')->name('penjualan.barang_delete');
 
 Route::get('/pembelian/list/{id?}', 'BeliController@list')->name('beli.list');
 Route::get('/pembelian/transaksi/{id?}', 'BeliController@transaksi')->name('beli.transaksi');
+Route::get('/pembelian/faktur/{id?}/{retur?}', 'BeliController@faktur')->name('beli.faktur');
+Route::post('/pembelian/faktur_store', 'BeliController@faktur_store')->name('beli.faktur_store');
 Route::post('/pembelian/transaksi/store', 'BeliController@store')->name('beli.store');
 Route::post('/pembelian/transaksi/barang_store', 'BeliController@barang_store')->name('pembelian.barang_store');
 Route::get('/pembelian/transaksi/barang_delete/{id}', 'BeliController@barang_delete')->name('pembelian.barang_delete');

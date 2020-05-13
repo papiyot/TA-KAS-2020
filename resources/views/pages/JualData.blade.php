@@ -24,7 +24,7 @@
                         <thead>
                         <tr>
                             <th class="text-center" style="width: 10%;">#</th>
-                            <th>Nota</th>
+                            <th>No Faktur</th>
                             <th>Tanggal</th>
                             <th class="text-right">Total</th>
                         </tr>
@@ -37,7 +37,7 @@
                                     {{$no}}
                                 </td>
                                 <td class="font-w600 text-primary text-uppercase">
-                                    {{$list->jual_id}}
+                                  <a href="{{ route('jual.faktur',[$list->jual_id]) }}">{{$list->jual_id}}</a>
                                 </td>
                                 <td class="font-w600 text-secondary text-uppercase">
                                     @date($list->jual_tgl)

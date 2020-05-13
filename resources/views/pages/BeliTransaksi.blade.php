@@ -22,7 +22,7 @@
                                         <select onchange="getharga(this, 'beli_detail')" class="js-select2 form-control" id="beli_detail_barang_id" name="beli_detail_barang_id" required style="width: 100%;" >
                                             <option>--Pilih Data--</option>
                                             @foreach($data->barang as $barang)
-                                            <option harga="{{$barang->barang_harga}}" value="{{$barang->barang_id}}" @php echo ($data->edit) ? ($data->edit->beli_detail_barang_id == $barang->barang_id) ? 'selected': '' : null; @endphp>{{$barang->barang_id}} [ {{$barang->barang_nama}} ]</option>
+                                            <option harga="{{$barang->barang_harga_pembelian}}" value="{{$barang->barang_id}}" @php echo ($data->edit) ? ($data->edit->beli_detail_barang_id == $barang->barang_id) ? 'selected': '' : null; @endphp>{{$barang->barang_id}} [ {{$barang->barang_nama}} ]</option>
                                             @endforeach
                                         </select>
                                         <label for="beli_detail_barang_id">Kode Barang</label>
@@ -66,13 +66,13 @@
                         <div class="block-content block-content-full ">
                             <span class="text-body-bg-dark font-w700 d-flex justify-content-center text-uppercase">Selesaikan Transaksi</span>
                             <form action="{{ route('beli.store') }}" method="post" > @csrf
-                                <input type="hidden" class="form-control" id="beli_id" name="beli_id" >
+{{--                                <input type="hidden" class="form-control" id="beli_id" name="beli_id" >--}}
                                 <input type="hidden" class="form-control" id="beli_total" name="beli_total" value="{{$data->total}}">
                                 <div class="form-group row">
                                     <div class="col-12 col-sm-6 col-md-6 ">
                                         <div class="form-material floating">
-                                            <input type="text" class="form-control text-body-bg-dark" required id="beli_nota" name="beli_nota" >
-                                            <label for="beli_nota" class="text-body-bg-dark">Nota</label>
+                                            <input type="text" class="form-control text-body-bg-dark" required id="beli_id" name="beli_id" >
+                                            <label for="beli_id" class="text-body-bg-dark">Nota</label>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-6 col-md-6 ">

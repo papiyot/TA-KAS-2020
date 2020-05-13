@@ -15,9 +15,10 @@ class CreatebeliTable extends Migration
     {
         Schema::create('beli', function (Blueprint $table) {
             $table->string('beli_id')->primary();
-            $table->string('beli_nota');
+//            $table->string('beli_nota');
             $table->date('beli_tgl');
             $table->double('beli_total',15);
+            $table->double('beli_retur',15);
             $table->string('beli_supplier_id');
             $table->foreign('beli_supplier_id')->references('supplier_id')->on('supplier')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamp('created_at')->useCurrent();

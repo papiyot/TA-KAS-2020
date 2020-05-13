@@ -18,20 +18,20 @@
                             <div class="form-group row">
                                 <div class="col-12 col-sm-12 col-md-6">
                                     <div class="form-material">
-                                        <input type="hidden" class="form-control" id="biaya_transaksi_id" name="biaya_transaksi_id"  value="@php echo ($data->edit) ? $data->edit->biaya_transaksi_id: ''; @endphp">
-                                        <select class="js-select2 form-control" id="biaya_transaksi_biaya_id" name="biaya_transaksi_biaya_id" required style="width: 100%;" >
+                                        <input type="hidden" class="form-control" id="biaya_detail_id" name="biaya_detail_id"  value="@php echo ($data->edit) ? $data->edit->biaya_detail_id: ''; @endphp">
+                                        <select class="js-select2 form-control" id="biaya_detail_biaya_id" name="biaya_detail_biaya_id" required style="width: 100%;" >
                                             <option>--Pilih Data--</option>
                                             @foreach($data->biaya as $biaya)
-                                                <option value="{{$biaya->biaya_id}}" @php echo ($data->edit) ? ($data->edit->biaya_transaksi_biaya_id == $biaya->biaya_id) ? 'selected': '' : null; @endphp>{{$biaya->biaya_id}} [ {{$biaya->biaya_nama}} ]</option>
+                                                <option value="{{$biaya->biaya_id}}" @php echo ($data->edit) ? ($data->edit->biaya_detail_biaya_id == $biaya->biaya_id) ? 'selected': '' : null; @endphp>{{$biaya->biaya_id}} [ {{$biaya->biaya_nama}} ]</option>
                                             @endforeach
                                         </select>
-                                        <label for="biaya_transaksi_biaya_id">Kode Biaya</label>
+                                        <label for="biaya_detail_biaya_id">Kode Biaya</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-6">
                                     <div class="form-material">
-                                        <input type="number" class="form-control" id="biaya_transaksi_jml" value="@php echo ($data->edit) ? $data->edit->biaya_transaksi_jml: ''; @endphp" name="biaya_transaksi_jml" required >
-                                        <label for="biaya_transaksi_jml">Nominal biaya</label>
+                                        <input type="number" class="form-control" id="biaya_detail_jml" value="@php echo ($data->edit) ? $data->edit->biaya_detail_jml: ''; @endphp" name="biaya_detail_jml" required >
+                                        <label for="biaya_detail_jml">Nominal biaya</label>
                                     </div>
                                 </div>
                             </div>
@@ -77,15 +77,15 @@
                             <tr>
                                 <td class="text-center" >{{$no}}</td>
                                 <td class="font-w600 text-uppercase text-primary">{{$list->biaya_nama}}</td>
-                                <td class="font-w600 text-secondary text-uppercase"> @date($list->biaya_transaksi_tgl)</td>
-                                <td class="text-right text-primary"> @rp($list->biaya_transaksi_jml)</td>
+                                <td class="font-w600 text-secondary text-uppercase"> @date($list->biaya_detail_tgl)</td>
+                                <td class="text-right text-primary"> @rp($list->biaya_detail_jml)</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <a href="{{ route('biayatransaksi.transaksi',[$list->biaya_transaksi_id]) }}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
+                                        <a href="{{ route('biayatransaksi.transaksi',[$list->biaya_detail_id]) }}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                         <a class="btn btn-sm btn-danger" data-toggle="confirmation" data-popout="true" data-title="Hapus Data ini?"
-                                           href="{{ route('biayatransaksi.delete',[$list->biaya_transaksi_id]) }}" ><i class="fa fa-times"></i></a>
+                                           href="{{ route('biayatransaksi.delete',[$list->biaya_detail_id]) }}" ><i class="fa fa-times"></i></a>
                                     </div>
                                 </td>
                             </tr>
