@@ -39,7 +39,15 @@ class BiayaController extends Controller
             ['biaya_detail_id' => $request['biaya_detail_id']],
             $request->except('_token')
         );
-
+        $kas = DB::table('kas')->where('kas_ket', 'biaya')->where('kas_id_value', $request['biaya_detail_id'])->first();
+        $insert['kas_id'] =  ($kas) ? $kas->kas_id : Helper::getCode('kas', 'kas_id','KS-');
+        $insert['kas_ket'] = 'biaya';
+        $insert['kas_id_value'] = $request['biaya_detail_id'];
+        $insert['kas_kredit'] = $request['biaya_detail_jml'];
+        DB::table('kas')->updateOrInsert(
+            ['kas_id' => $insert['kas_id']],
+            $insert
+        );
         return redirect('biaya/transaksi');
     }
 

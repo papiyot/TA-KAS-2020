@@ -59,6 +59,11 @@ class JualController extends Controller
             $request->except('_token')
         );
         DB::table('jual_detail')->whereNull('jual_detail_jual_id')->update(['jual_detail_jual_id'=>$request['jual_id']]);
+        $insert['kas_id'] =  Helper::getCode('kas', 'kas_id','KS-');
+        $insert['kas_ket'] = 'jual';
+        $insert['kas_id_value'] = $request['jual_id'];
+        $insert['kas_debet'] = $request['jual_total'];
+        DB::table('kas')->insert( $insert );
         return redirect('penjualan/list');
     }
     public function barang_delete($id=null)

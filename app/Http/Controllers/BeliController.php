@@ -55,11 +55,13 @@ class BeliController extends Controller
     {
         if (is_null($request['beli_id'])){ $request->request->add( ['beli_id' =>Helper::getCode('beli', 'beli_id','BL-')] );  }
         $request->request->add( ['beli_tgl' =>Carbon::now()] );
-        DB::table('beli')->updateOrInsert(
-            ['beli_id' => $request['beli_id']],
-            $request->except('_token')
-        );
+        DB::table('beli')->insert( $request->except('_token') );
         DB::table('beli_detail')->whereNull('beli_detail_beli_id')->update(['beli_detail_beli_id'=>$request['beli_id']]);
+        $insert['kas_id'] =  Helper::getCode('kas', 'kas_id','KS-');
+        $insert['kas_ket'] = 'beli';
+        $insert['kas_id_value'] = $request['beli_id'];
+        $insert['kas_kredit'] = $request['beli_total'];
+        DB::table('kas')->insert( $insert );
         return redirect('pembelian/list');
     }
 
@@ -112,6 +114,15 @@ class BeliController extends Controller
         $set= DB::table('beli')->where('beli_id', $request['retur_beli_id'])->first();
         $retur_nominal = ($set->beli_retur==0) ? ($request['retur_harga']*$request['retur_jml']) : $set->beli_retur-$request['total_retur']+($request['retur_harga']*$request['retur_jml']);
         DB::table('beli')->where('beli_id', $request['retur_beli_id'])->update(['beli_retur'=>$retur_nominal]);
-        return redirect("pembelian/faktur/".$request['retur_beli_id']);
+        $kas = DB::table('kas')->where('kas_ket', 'retur')->where('kas_id_value', $request['retur_beli_id'])->first();
+        $insert['kas_id'] = ($kas) ? $kas->kas_id : Helper::getCode('kas', 'kas_id','KS-');
+        $insert['kas_ket'] = ($kas) ? $kas->kas_ket : 'retur';
+        $insert['kas_id_value'] = $request['retur_beli_id'];
+        $insert['kas_debet'] = $retur_nominal;
+        DB::table('kas')->updateOrInsert(
+            ['kas_id' => $insert['kas_id']],
+            $insert
+        );
+        return redirect("pembelian/faktur/".$request['retur_beli_id']."/retur");
     }
 }

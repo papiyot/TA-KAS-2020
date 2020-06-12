@@ -17,6 +17,7 @@ class CreatekasTable extends Migration
             $table->string('kas_id')->primary();
             $table->date('kas_tgl');
             $table->string('kas_ket');
+            $table->string('kas_id_value');
             $table->double('kas_debet',15);
             $table->double('kas_kredit',15);
             $table->timestamp('created_at')->useCurrent();
