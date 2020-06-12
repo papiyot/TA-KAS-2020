@@ -3,7 +3,7 @@
 @include('layouts.partials.css')
 <body>
 
-<div id="page-container" class="sidebar-o enable-page-overlay side-scroll page-header-modern page-header-fixed main-content-boxed sidebar-inverse">
+<div id="page-container" class="enable-cookies sidebar-o enable-page-overlay side-scroll page-header-modern page-header-fixed main-content-boxed sidebar-inverse">
 @include('layouts.partials.menu')
 @include('layouts.partials.header')
 

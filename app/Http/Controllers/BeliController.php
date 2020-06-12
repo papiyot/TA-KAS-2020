@@ -69,10 +69,11 @@ class BeliController extends Controller
         return redirect('pembelian/transaksi');
     }
 
-    public function faktur( $id, $retur=null)
+    public function faktur( $id, $type, $retur=null)
     {
         $data =  new \stdClass();
         $data->id = $id;
+        $data->type = $type;
         $data->edit = null;
         $data->retur = null;
         $data->pembelian = null;

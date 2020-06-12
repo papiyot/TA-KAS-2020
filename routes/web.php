@@ -39,7 +39,7 @@ Route::get('/penjualan/transaksi/barang_delete/{id}', 'JualController@barang_del
 
 Route::get('/pembelian/list/{id?}', 'BeliController@list')->name('beli.list');
 Route::get('/pembelian/transaksi/{id?}', 'BeliController@transaksi')->name('beli.transaksi');
-Route::get('/pembelian/faktur/{id?}/{retur?}', 'BeliController@faktur')->name('beli.faktur');
+Route::get('/pembelian/faktur/{id?}/{type}/{retur?}', 'BeliController@faktur')->name('beli.faktur');
 Route::post('/pembelian/faktur_store', 'BeliController@faktur_store')->name('beli.faktur_store');
 Route::post('/pembelian/transaksi/store', 'BeliController@store')->name('beli.store');
 Route::post('/pembelian/transaksi/barang_store', 'BeliController@barang_store')->name('pembelian.barang_store');

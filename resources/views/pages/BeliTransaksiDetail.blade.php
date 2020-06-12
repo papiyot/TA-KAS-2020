@@ -24,12 +24,6 @@
                                         <input type="hidden" class="form-control" id="total_retur" name="total_retur"  value="@php echo ($data->retur) ? $data->retur->retur_jml*$data->retur->retur_harga: 0; @endphp">
                                         <input type="hidden" class="form-control" id="total_pembelian" name="total_pembelian"  value="@php echo $data->total; @endphp">
                                         <input type="text" class="form-control" readonly id="retur_barang_id" value="@php echo ($data->retur) ? $data->retur->retur_barang_id: $data->pembelian->beli_detail_barang_id; @endphp" name="retur_barang_id">
-{{--                                        <select onchange="getharga(this, 'retur')" class="js-select2 form-control" id="retur_barang_id" name="retur_barang_id" required style="width: 100%;" >--}}
-{{--                                            <option>--Pilih Data--</option>--}}
-{{--                                            @foreach($data->list as $barang)--}}
-{{--                                            <option harga="{{$barang->beli_detail_harga}}" value="{{$barang->barang_id}}" @php  if ($data->retur) { echo ($data->retur->retur_barang_id == $barang->barang_id) ? 'selected': ''; }else{ echo ($data->pembelian->beli_detail_barang_id == $barang->barang_id) ? 'selected': ''; }   @endphp>{{$barang->barang_id}} [ {{$barang->barang_nama}} ]</option>--}}
-{{--                                            @endforeach--}}
-{{--                                        </select>--}}
                                         <label for="retur_barang_id">Kode Barang</label>
                                     </div>
                                 </div>
@@ -86,7 +80,9 @@
                             <th class="text-center" style="width: 10%;">QTY</th>
                             <th class="text-right" style="width: 10%;">@harga</th>
                             <th class="text-right" style="width: 10%;">Total</th>
+                            @if($data->type=='retur')
                             <th class="text-center table-secondary" style="width: 100px;">Actions</th>
+                            @endif
                         </tr>
                         </thead>
                         <tbody>
@@ -98,12 +94,14 @@
                             <td class="text-center">{{$list->beli_detail_jml}}</td>
                             <td class="text-right">@rp($list->beli_detail_harga)</td>
                             <td class="text-right">@rp($list->beli_detail_harga*$list->beli_detail_jml)</td>
+                            @if($data->type=='retur')
                             <td class="text-center table-secondary">
                                 <div class="btn-group">
                                     <a class="btn btn-sm btn-warning" data-toggle="confirmation" data-popout="true" data-title="Retur barang ini?"
-                                       href="{{ route('beli.faktur',[$list->beli_detail_beli_id, $list->beli_detail_id]) }}" ><i class="fa fa-refresh"></i></a>
+                                       href="{{ route('beli.faktur',[$list->beli_detail_beli_id, 'retur', $list->beli_detail_id]) }}" ><i class="fa fa-refresh"></i></a>
                                 </div>
                             </td>
+                            @endif
                         </tr>
                         @php $no++; @endphp @endforeach
                         @if($data->total==0)

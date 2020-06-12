@@ -40,7 +40,7 @@
                                     {{$no}}
                                 </td>
                                 <td class="font-w600 text-primary text-uppercase">
-                                    <a href="{{ route('beli.faktur',[$list->beli_id]) }}">{{$list->beli_id}}</a>
+                                    <a href="{{ route('beli.faktur',[$list->beli_id, 'faktur']) }}">{{$list->beli_id}}</a>
                                 </td>
                                 <td class="font-w600 text-secondary text-uppercase">
                                     {{$list->supplier_nama}}
@@ -51,8 +51,8 @@
                                 <td class="text-right font-w600 text-secondary ">
                                     @rp($list->beli_total)
                                 </td>
-                                <td class="text-right font-w600 text-secondary ">
-                                    @rp($list->beli_retur)
+                                <td class="text-right font-w600 text-primary ">
+                                    <a href="{{ route('beli.faktur',[$list->beli_id, 'retur']) }}">@rp($list->beli_retur)</a>
                                 </td>
                                 <td class="text-right font-w600 text-secondary ">
                                     @rp($list->beli_total-$list->beli_retur)

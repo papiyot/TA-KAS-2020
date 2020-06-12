@@ -71,7 +71,7 @@ class JualController extends Controller
     {
         $data =  new \stdClass();
         $jual = DB::table('jual')->where('jual_id', $id)->first();
-        $data->edit = $id;
+        $data->id = $id;
         $data->list = DB::table('jual_detail')->join('barang', 'barang_id', 'jual_detail_barang_id')->where('jual_detail_jual_id', $id)->get();
         $data->date = $jual->jual_tgl;
         $data->total = $jual->jual_total;
