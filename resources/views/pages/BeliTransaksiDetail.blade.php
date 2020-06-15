@@ -68,7 +68,7 @@
 
         <div class="block block-themed block-rounded">
             <div class="block-header bg-gd-primary">
-                <h3 class="block-title">Pembelian Barang No Faktur {{$data->faktur}} </h3>
+                <h3 class="block-title">Pembelian Barang No Faktur {{$data->faktur}} <btn class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-fromleft">change</btn></h3>
             </div>
             <div class="block-content">
                 <div class="table-responsive">
@@ -162,6 +162,42 @@
                 </div>
             </div>
         </div>
+
+            <div class="modal fade" id="modal-fromleft" tabindex="-1" role="dialog" aria-labelledby="modal-fromleft" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-fromleft" role="document">
+                    <div class="modal-content">
+                        <form action="{{ route('beli.ubah_faktur') }}" method="post" > @csrf
+                        <div class="block block-themed block-transparent mb-0">
+                            <div class="block-header bg-primary">
+                                <h3 class="block-title">Ubah No. Faktur</h3>
+                                <div class="block-options">
+                                    <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                        <i class="si si-close"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="block-content">
+                                    <div class="form-group row">
+                                        <div class="col-12">
+                                            <div class="form-material">
+                                                <input type="hidden" class="form-control" id="beli_id" name="beli_id"  value="{{$data->id}}">
+                                                <input type="text" class="form-control" id="beli_faktur" value="{{$data->faktur}}" name="beli_faktur">
+                                                <label for="beli_faktur">No. Faktur</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-alt-success" >
+                                <i class="fa fa-check"></i> Ubah
+                            </button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
     </div>
 @endsection
 

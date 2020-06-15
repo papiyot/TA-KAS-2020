@@ -126,4 +126,12 @@ class BeliController extends Controller
         );
         return redirect("pembelian/faktur/".$request['retur_beli_id']."/retur");
     }
+
+    public function ubah_faktur( Request $request){
+        DB::table('beli')->updateOrInsert(
+            ['beli_id' => $request['beli_id']],
+            $request->except('_token')
+        );
+        return redirect("pembelian/faktur/".$request['beli_id']."/retur");
+    }
 }

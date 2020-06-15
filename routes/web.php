@@ -42,6 +42,7 @@ Route::get('/pembelian/transaksi/{id?}', 'BeliController@transaksi')->name('beli
 Route::get('/pembelian/faktur/{id?}/{type}/{retur?}', 'BeliController@faktur')->name('beli.faktur');
 Route::post('/pembelian/faktur_store', 'BeliController@faktur_store')->name('beli.faktur_store');
 Route::post('/pembelian/transaksi/store', 'BeliController@store')->name('beli.store');
+Route::post('/pembelian/transaksi/ubah_faktur', 'BeliController@ubah_faktur')->name('beli.ubah_faktur');
 Route::post('/pembelian/transaksi/barang_store', 'BeliController@barang_store')->name('pembelian.barang_store');
 Route::get('/pembelian/transaksi/barang_delete/{id}', 'BeliController@barang_delete')->name('pembelian.barang_delete');
 
