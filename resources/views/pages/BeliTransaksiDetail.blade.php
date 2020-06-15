@@ -68,7 +68,7 @@
 
         <div class="block block-themed block-rounded">
             <div class="block-header bg-gd-primary">
-                <h3 class="block-title">Pembelian Barang No Faktur {{$data->id}} </h3>
+                <h3 class="block-title">Pembelian Barang No Faktur {{$data->faktur}} </h3>
             </div>
             <div class="block-content">
                 <div class="table-responsive">

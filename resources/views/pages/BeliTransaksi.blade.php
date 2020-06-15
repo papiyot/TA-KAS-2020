@@ -71,8 +71,8 @@
                                 <div class="form-group row">
                                     <div class="col-12 col-sm-6 col-md-6 ">
                                         <div class="form-material floating">
-                                            <input type="text" class="form-control text-body-bg-dark" required id="beli_id" name="beli_id" >
-                                            <label for="beli_id" class="text-body-bg-dark">Nota</label>
+                                            <input type="text" class="form-control text-body-bg-dark" required id="beli_faktur" name="beli_faktur" >
+                                            <label for="beli_faktur" class="text-body-bg-dark">Nota</label>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-6 col-md-6 ">

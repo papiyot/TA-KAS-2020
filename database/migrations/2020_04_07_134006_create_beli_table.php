@@ -15,7 +15,7 @@ class CreatebeliTable extends Migration
     {
         Schema::create('beli', function (Blueprint $table) {
             $table->string('beli_id')->primary();
-//            $table->string('beli_nota');
+            $table->string('beli_faktur');
             $table->date('beli_tgl');
             $table->double('beli_total',15);
             $table->double('beli_retur',15);

@@ -75,6 +75,7 @@ class BeliController extends Controller
     {
         $data =  new \stdClass();
         $data->id = $id;
+        $data->faktur = DB::table('beli')->where('beli_id', $id)->first()->beli_faktur;
         $data->type = $type;
         $data->edit = null;
         $data->retur = null;

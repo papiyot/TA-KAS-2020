@@ -40,7 +40,7 @@
                                     {{$no}}
                                 </td>
                                 <td class="font-w600 text-primary text-uppercase">
-                                    <a href="{{ route('beli.faktur',[$list->beli_id, 'faktur']) }}">{{$list->beli_id}}</a>
+                                    <a href="{{ route('beli.faktur',[$list->beli_id, 'faktur']) }}">{{$list->beli_faktur}}</a>
                                 </td>
                                 <td class="font-w600 text-secondary text-uppercase">
                                     {{$list->supplier_nama}}
