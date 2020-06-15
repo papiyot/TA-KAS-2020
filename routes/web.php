@@ -56,6 +56,9 @@ Route::get('/jurnal/jpenerimaankas', 'LaporanController@jpenerimaankas')->name('
 Route::get('/jurnal/jpengeluarankas', 'LaporanController@jpengeluarankas')->name('jurnal.jpengeluarankas');
 
 Route::get('/laporan/lpembelian', 'LaporanController@lpembelian')->name('laporan.lpembelian');
+Route::get('/laporan/lpenerimaankas', 'LaporanController@lpenerimaankas')->name('laporan.lpenerimaankas');
+Route::get('/laporan/lpengeluarankas', 'LaporanController@lpengeluarankas')->name('laporan.lpengeluarankas');
+Route::get('/laporan/lbukubesarkas', 'LaporanController@lbukubesarkas')->name('laporan.lbukubesarkas');
 
 Route::get('/uuid',function (){
 //    Carbon::now()->setLocale('id');

@@ -115,7 +115,10 @@
                 </li>
                 <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span class="sidebar-mini-hidden">Laporan</span></li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Kas</span></a>
+                    <a href="{{ route('laporan.lpembelian') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Pembelian</span></a>
+                    <a href="{{ route('laporan.lpenerimaankas') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Penerimaan Kas</span></a>
+                    <a href="{{ route('laporan.lpengeluarankas') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Pengeluaran Kas</span></a>
+                    <a href="{{ route('laporan.lbukubesarkas') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Buku Besar Kas</span></a>
                 </li>
 
             </ul>

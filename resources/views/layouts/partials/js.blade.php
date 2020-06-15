@@ -14,6 +14,13 @@
         let harga = $( "#"+param+"_barang_id option:selected" ).attr('harga');
         $("#"+param+"_harga").val(harga);
     }
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
 </script>
 <script>
     $('[data-toggle=confirmation]').confirmation({
