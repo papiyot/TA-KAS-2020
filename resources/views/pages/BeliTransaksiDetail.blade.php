@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title')Faktur Pembelian @endsection
+@section('title')Jurnal Pembelian @endsection
 @section('content')
     <div class="col-md-12">
         @if($data->edit)
@@ -68,7 +68,11 @@
 
         <div class="block block-themed block-rounded">
             <div class="block-header bg-gd-primary">
-                <h3 class="block-title">Pembelian Barang No Faktur {{$data->faktur}} <btn class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-fromleft">change</btn></h3>
+                <h3 class="block-title">Pembelian Barang No Faktur {{$data->faktur}}
+                    @if($data->type=='retur')
+                        <btn class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-fromleft">change</btn>
+                    @endif
+                </h3>
             </div>
             <div class="block-content">
                 <div class="table-responsive">

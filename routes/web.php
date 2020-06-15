@@ -50,6 +50,13 @@ Route::get('/biaya/transaksi/{id?}', 'BiayaController@transaksi')->name('biayatr
 Route::post('/biaya/transaksi/store', 'BiayaController@store')->name('biayatransaksi.store');
 Route::get('/biaya/transaksi/delete/{id}', 'BiayaController@delete')->name('biayatransaksi.delete');
 
+Route::get('/jurnal/jpembelian', 'LaporanController@jpembelian')->name('jurnal.jpembelian');
+Route::get('/jurnal/jpenjualan', 'LaporanController@jpenjualan')->name('jurnal.jpenjualan');
+Route::get('/jurnal/jpenerimaankas', 'LaporanController@jpenerimaankas')->name('jurnal.jpenerimaankas');
+Route::get('/jurnal/jpengeluarankas', 'LaporanController@jpengeluarankas')->name('jurnal.jpengeluarankas');
+
+Route::get('/laporan/lpembelian', 'LaporanController@lpembelian')->name('laporan.lpembelian');
+
 Route::get('/uuid',function (){
 //    Carbon::now()->setLocale('id');
     return $now = Carbon::now()->translatedFormat('d F Y');
