@@ -23,7 +23,13 @@
                         @foreach($data->list as $list)
                             <tr>
                                 <td class="font-w600 text-center">@date($list->kas_tgl)</td>
-                                <td class="font-w600 text-uppercase">Penjualan</td>
+                                <td class="font-w600 text-uppercase">
+                                    @if($list->kas_ket=='jual')
+                                    Penjualan
+                                    @elseif($list->kas_ket=='retur')
+                                    Retur
+                                    @endif
+                                </td>
                                 <td class="text-center font-w600 text-uppercase text-primary">
                                    {{$list->kas_id_value}}
                                 </td>

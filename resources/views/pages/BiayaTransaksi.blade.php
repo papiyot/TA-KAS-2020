@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-6">
                                     <div class="form-material">
-                                        <input type="number" class="form-control" id="biaya_detail_jml" value="@php echo ($data->edit) ? $data->edit->biaya_detail_jml: ''; @endphp" name="biaya_detail_jml" required >
+                                        <input type="number" min="0" class="form-control" id="biaya_detail_jml" value="@php echo ($data->edit) ? $data->edit->biaya_detail_jml: ''; @endphp" name="biaya_detail_jml" required >
                                         <label for="biaya_detail_jml">Nominal biaya</label>
                                     </div>
                                 </div>

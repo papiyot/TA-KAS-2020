@@ -18,7 +18,7 @@ class LaporanController extends Controller
     {
         $data =  new \stdClass();
         $data->total = 0;
-        $data->list = DB::table('kas')->where('kas_ket', 'beli')->join('beli', 'beli_id', '=', 'kas_id_value')->get();
+        $data->list = DB::table('kas')->where('kas_ket', 'beli')->join('beli', 'beli_id', '=', 'kas_id_value')->orderby('kas_tgl', 'asc')->get();
         if($data->list){
             foreach ($data->list as $item){
                 $data->total = $data->total + $item->kas_kredit;
@@ -30,7 +30,7 @@ class LaporanController extends Controller
     {
         $data =  new \stdClass();
         $data->total = 0;
-        $data->list = DB::table('kas')->where('kas_ket', 'jual')->join('jual', 'jual_id', '=', 'kas_id_value')->get();
+        $data->list = DB::table('kas')->where('kas_ket', 'jual')->join('jual', 'jual_id', '=', 'kas_id_value')->orderby('kas_tgl', 'asc')->get();
         if($data->list){
             foreach ($data->list as $item){
                 $data->total = $data->total + $item->kas_debet;
@@ -42,7 +42,7 @@ class LaporanController extends Controller
     {
         $data =  new \stdClass();
         $data->total = 0;
-        $data->list = DB::table('kas')->where('kas_ket', 'jual')->join('jual', 'jual_id', '=', 'kas_id_value')->get();
+        $data->list = DB::table('kas')->wherein('kas_ket',['jual', 'retur'] )->orderby('kas_tgl', 'asc')->get();
         if($data->list){
             foreach ($data->list as $item){
                 $data->total = $data->total + $item->kas_debet;
@@ -54,7 +54,7 @@ class LaporanController extends Controller
     {
         $data =  new \stdClass();
         $data->total = 0;
-        $data->list = DB::table('kas')->wherein('kas_ket', ['beli','biaya'])->get();
+        $data->list = DB::table('kas')->wherein('kas_ket', ['beli','biaya'])->orderby('kas_tgl','asc')->get();
         $data->beli = DB::table('kas')->where('kas_ket', 'beli')->join('beli', 'beli_id', '=', 'kas_id_value')->get();
         $data->fix = array();
         if($data->list){
@@ -84,7 +84,7 @@ class LaporanController extends Controller
         $data->enddate = ($request->enddate) ? $request->enddate : Carbon::now()->endOfMonth()->format('Y-m-d');
         $data->startdate = ($request->startdate) ? $request->startdate : Carbon::now()->startOfMonth()->format('Y-m-d');
         $data->total = 0;
-        $data->list = DB::table('kas')->where('kas_ket', 'beli')->whereBetween  ('kas_tgl',[$data->startdate, $data->enddate])->join('beli', 'beli_id', '=', 'kas_id_value')->join('supplier', 'supplier_id', '=', 'beli_supplier_id')->get();
+        $data->list = DB::table('kas')->where('kas_ket', 'beli')->whereBetween  ('kas_tgl',[$data->startdate, $data->enddate])->join('beli', 'beli_id', '=', 'kas_id_value')->join('supplier', 'supplier_id', '=', 'beli_supplier_id')->orderby('kas_tgl', 'asc')->get();
 //        dd($data->list);
         if($data->list){
             foreach ($data->list as $item){
@@ -99,7 +99,7 @@ class LaporanController extends Controller
         $data->enddate = ($request->enddate) ? $request->enddate : Carbon::now()->endOfMonth()->format('Y-m-d');
         $data->startdate = ($request->startdate) ? $request->startdate : Carbon::now()->startOfMonth()->format('Y-m-d');
         $data->total = 0;
-        $data->list = DB::table('kas')->where('kas_ket', 'jual')->whereBetween('kas_tgl',[$data->startdate, $data->enddate])->get();
+        $data->list = DB::table('kas')->where('kas_ket', 'jual')->whereBetween('kas_tgl',[$data->startdate, $data->enddate])->orderby('kas_tgl', 'asc')->get();
 //        dd($data->list);
         if($data->list){
             foreach ($data->list as $item){
@@ -114,7 +114,7 @@ class LaporanController extends Controller
         $data->enddate = ($request->enddate) ? $request->enddate : Carbon::now()->endOfMonth()->format('Y-m-d');
         $data->startdate = ($request->startdate) ? $request->startdate : Carbon::now()->startOfMonth()->format('Y-m-d');
         $data->total = 0;
-        $data->list = DB::table('kas')->wherein('kas_ket', ['beli','biaya'])->whereBetween('kas_tgl',[$data->startdate, $data->enddate])->get();
+        $data->list = DB::table('kas')->wherein('kas_ket', ['beli','biaya'])->whereBetween('kas_tgl',[$data->startdate, $data->enddate])->orderby('kas_tgl','asc')->get();
         $data->beli = DB::table('kas')->where('kas_ket', 'beli')->join('beli', 'beli_id', '=', 'kas_id_value')->get();
         $data->fix = array();
         if($data->list){

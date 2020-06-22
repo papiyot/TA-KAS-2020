@@ -16,6 +16,7 @@ class CreatekasTable extends Migration
         Schema::create('kas', function (Blueprint $table) {
             $table->string('kas_id')->primary();
             $table->date('kas_tgl');
+            $table->string('kas_type')->default('transaksi');
             $table->string('kas_ket');
             $table->string('kas_id_value');
             $table->double('kas_debet',15);

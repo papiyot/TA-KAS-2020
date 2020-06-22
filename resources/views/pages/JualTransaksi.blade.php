@@ -30,13 +30,13 @@
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6">
                                     <div class="form-material">
-                                        <input type="number" class="form-control" id="jual_detail_harga" value="@php echo ($data->edit) ? $data->edit->jual_detail_harga: ''; @endphp" name="jual_detail_harga" required >
+                                        <input type="number" readonly class="form-control" id="jual_detail_harga" value="@php echo ($data->edit) ? $data->edit->jual_detail_harga: ''; @endphp" name="jual_detail_harga" required >
                                         <label for="jual_detail_harga">Harga Barang</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6">
                                     <div class="form-material">
-                                        <input type="number" class="form-control" id="jual_detail_jml" value="@php echo ($data->edit) ? $data->edit->jual_detail_jml: ''; @endphp" name="jual_detail_jml" required >
+                                        <input type="number" min="0" class="form-control" id="jual_detail_jml" value="@php echo ($data->edit) ? $data->edit->jual_detail_jml: ''; @endphp" name="jual_detail_jml" required >
                                         <label for="jual_detail_jml">Jumlah</label>
                                     </div>
                                 </div>
