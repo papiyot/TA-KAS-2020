@@ -17,7 +17,7 @@ class CreateBarangTable extends Migration
             $table->string('barang_id')->primary();
             $table->string('barang_nama');
             $table->double('barang_harga_pembelian',15);
-            $table->double('barang_harga_penjualan',15);
+            $table->integer('barang_margin');
             $table->string('barang_satuan');
             $table->decimal('barang_stok', 15,2);
             $table->timestamp('created_at')->useCurrent();
