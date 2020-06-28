@@ -25,19 +25,19 @@
                         </div>
                         <div class="col-12 col-sm-6 col-md-4 ">
                             <div class="form-material floating">
-                                <input type="number" class="form-control" id="barang_harga_pembelian" name="barang_harga_pembelian" required value="@php echo ($data->edit) ? $data->edit->barang_harga_pembelian: ''; @endphp">
+                                <input type="number" min="0" class="form-control" id="barang_harga_pembelian" name="barang_harga_pembelian" required value="@php echo ($data->edit) ? $data->edit->barang_harga_pembelian: ''; @endphp">
                                 <label for="barang_harga_pembelian">Harga Pembelian</label>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-md-4 ">
                             <div class="form-material floating">
-                                <input type="number" class="form-control" id="barang_harga_penjualan" name="barang_harga_penjualan" required value="@php echo ($data->edit) ? $data->edit->barang_harga_penjualan: ''; @endphp">
-                                <label for="barang_harga_penjualan">Harga Penjualan</label>
+                                <input type="number" min="0" max="50" class="form-control" id="barang_margin" name="barang_margin" required value="@php echo ($data->edit) ? $data->edit->barang_harga_penjualan: ''; @endphp">
+                                <label for="barang_margin">Margin Penjualan</label>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-md-4 ">
                             <div class="form-material floating">
-                                <input type="number" class="form-control" id="barang_stok" name="barang_stok" required value="@php echo ($data->edit) ? $data->edit->barang_stok: ''; @endphp">
+                                <input type="number" min="0" class="form-control" id="barang_stok" name="barang_stok" required value="@php echo ($data->edit) ? $data->edit->barang_stok: ''; @endphp">
                                 <label for="barang_stok">Stok Barang</label>
                             </div>
                         </div>
@@ -79,6 +79,7 @@
                             <th class="text-center">#</th>
                             <th>NAMA</th>
                             <th class="text-right">HARGA PEMBELIAN</th>
+                            <th class="text-center">Margin %</th>
                             <th class="text-right">HARGA PENJUALAN</th>
                             <th>STOK</th>
                             <th>SATUAN</th>
@@ -88,11 +89,13 @@
                         <tbody>
                         @php $no=1; @endphp
                         @foreach($data->list as $list)
+                        @php $harga=$list->barang_harga_pembelian+(($list->barang_harga_pembelian/100)*$list->barang_margin); @endphp
                             <tr>
                                 <td class="text-center">{{$no}}</td>
                                 <td class="font-w600 text-uppercase text-primary">{{$list->barang_nama}}</td>
                                 <td class="text-right" style="width: 15%;">@rp($list->barang_harga_pembelian)</td>
-                                <td class="text-right" style="width: 15%;">@rp($list->barang_harga_penjualan)</td>
+                                <td class="text-center">{{$list->barang_margin}}%</td>
+                                <td class="text-right" style="width: 15%;">@rp($harga)</td>
                                 <td >{{$list->barang_stok}}</td>
                                 <td class="text-uppercase">{{$list->barang_satuan}}</td>
                                 <td class="text-center">

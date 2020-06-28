@@ -30,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('rp', function ($expression) {
             return "Rp. <?php echo number_format($expression, 0, ',', '.'); ?>";
         });
+        
         Blade::directive('date', function ($expression) {
             return " <?php echo \Carbon\Carbon::parse($expression)->translatedFormat('d F Y'); ?>";
         });
