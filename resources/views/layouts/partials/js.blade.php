@@ -10,9 +10,28 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-confirmation2/dist/bootstrap-confirmation.min.js"></script>
 <script>jQuery(function(){ Codebase.helpers(['select2']); });</script>
 <script>
+    var input_id = null;
+    var saldo = @php echo(Session::get('saldo')) ; @endphp ;
+
     function getharga(sel, param) {
         let harga = $( "#"+param+"_barang_id option:selected" ).attr('harga');
         $("#"+param+"_harga").val(harga);
+        if(param=='beli_detail'){
+            let max = parseInt((saldo-total)/harga);
+            document.getElementById('beli_detail_jml').max = max;
+        }
+    }
+    function ceksaldo(param) {
+        input_id = param;
+        var x = parseInt(document.getElementById(param).value);
+        if(x>saldo){
+            $("#modal-alert-saldo").modal();
+        }
+    }
+    function closemodal(){
+        if(input_id){
+            document.getElementById(input_id).value = '';
+        }
     }
     function printDiv(divName) {
         var printContents = document.getElementById(divName).innerHTML;

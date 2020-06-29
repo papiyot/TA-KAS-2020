@@ -16,6 +16,7 @@ class BeliController extends Controller
 
     public function list( $id=null)
     {
+        Session(['saldo' => Helper::saldo()]);
         $data =  new \stdClass();
         $data->list = DB::table('beli')->join('supplier', 'supplier_id', '=', 'beli_supplier_id')->get();
         return view('pages.BeliData',  compact('data'));
@@ -23,6 +24,7 @@ class BeliController extends Controller
 
     public function transaksi( $id=null)
     {
+        Session(['saldo' => Helper::saldo()]);
         $data =  new \stdClass();
         $data->edit = null;
         $data->list = DB::table('beli_detail')->join('barang', 'barang_id', '=', 'beli_detail_barang_id')->whereNull('beli_detail_beli_id')->get();

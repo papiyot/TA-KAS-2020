@@ -4,9 +4,9 @@
     <div class="col-md-12">
         <div class="block block-themed block-rounded">
             <div class="block-header bg-gd-primary">
-                <h3 class="block-title">
+                <h3 class="block-title">Daftar Penjualan |
                     <a  href="{{ route('jual.transaksi') }}" class="btn btn-alt-primary">
-                        <i class="fa fa-plus mr-5"></i> Penjualan
+                        <i class="fa fa-plus mr-5"></i>Tambah Penjualan
                     </a>
                 </h3>
 

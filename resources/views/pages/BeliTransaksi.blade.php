@@ -156,4 +156,9 @@
         </div>
     </div>
 @endsection
+@section('js')
+<script>
+var total = @php echo($data->total) ; @endphp ;
+</script>
+@endsection
 

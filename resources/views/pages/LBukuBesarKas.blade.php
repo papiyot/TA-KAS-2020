@@ -37,6 +37,8 @@
                                     Biaya
                                     @elseif($list->kas_ket=='jual')
                                     Penjualan
+                                    @elseif($list->kas_type=='modal')
+                                    Kas
                                     @endif
                                 </td>
                                 <td class="text-right">@rp($list->kas_debet)</td>

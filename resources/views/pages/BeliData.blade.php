@@ -5,9 +5,17 @@
         <div class="block block-themed block-rounded">
             <div class="block-header bg-gd-primary">
                 <h3 class="block-title">
+                    Daftar Pembelian |
+                    @if(Session::get('saldo')==0)
+                    <btn class="btn btn-alt-primary" data-toggle="modal" data-target="#modal-alert-saldo">
+                        <i class="fa fa-plus mr-5"></i> Tambah Pembelian
+                    </btn>
+                    @else
                     <a  href="{{ route('beli.transaksi') }}" class="btn btn-alt-primary">
-                        <i class="fa fa-plus mr-5"></i> Pembelian
+                        <i class="fa fa-plus mr-5"></i> Tambah Pembelian
                     </a>
+                    @endif
+                    
                 </h3>
 
                 <div class="block-options">
