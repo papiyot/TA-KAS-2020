@@ -15,12 +15,12 @@ class CreatekasTable extends Migration
     {
         Schema::create('kas', function (Blueprint $table) {
             $table->string('kas_id')->primary();
-            $table->date('kas_tgl');
+            $table->date('kas_tgl')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->string('kas_type')->default('transaksi');
-            $table->string('kas_ket');
-            $table->string('kas_id_value');
-            $table->double('kas_debet',15);
-            $table->double('kas_kredit',15);
+            $table->string('kas_ket')->nullable();
+            $table->string('kas_id_value')->nullable();
+            $table->double('kas_debet',15)->default(0);
+            $table->double('kas_kredit',15)->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))->nullable();
             $table->softDeletes('deleted_at');

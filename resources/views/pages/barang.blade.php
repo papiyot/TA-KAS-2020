@@ -31,7 +31,7 @@
                         </div>
                         <div class="col-12 col-sm-6 col-md-4 ">
                             <div class="form-material floating">
-                                <input type="number" min="0" max="50" class="form-control" id="barang_margin" name="barang_margin" required value="@php echo ($data->edit) ? $data->edit->barang_harga_penjualan: ''; @endphp">
+                                <input type="number" min="0" max="50" class="form-control" id="barang_margin" name="barang_margin" required value="@php echo ($data->edit) ? $data->edit->barang_margin: ''; @endphp">
                                 <label for="barang_margin">Margin Penjualan</label>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
 
         <div class="block block-themed">
             <div class="block-header bg-gd-primary">
-                <h3 class="block-title">Barang Table</h3>
+                <h3 class="block-title">Barang Table </h3>
             </div>
             <div class="block-content">
                 <div class="table-responsive">

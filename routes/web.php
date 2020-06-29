@@ -29,6 +29,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/master/store/{table}/{code}', 'MasterController@store')->name('master.store');
 Route::get('/master/{table}/{id?}', 'MasterController@view')->name('master');
 Route::get('/delete/{table}/{id?}', 'MasterController@delete')->name('delete');
+Route::post('/saldo', 'MasterController@saldo')->name('master.saldo');
 
 Route::get('/penjualan/list/{id?}', 'JualController@list')->name('jual.list');
 Route::get('/penjualan/transaksi/{id?}', 'JualController@transaksi')->name('jual.transaksi');
