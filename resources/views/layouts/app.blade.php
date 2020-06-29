@@ -26,8 +26,8 @@
                             <div class="form-group row">
                                 <div class="col-12">
                                     <div class="form-material">
-                                        <input type="number" min="0" class="form-control" id="kas_kredit" name="kas_kredit">
-                                        <label for="kas_kredit">Modal</label>
+                                        <input type="number" min="0" class="form-control" id="kas_debet" name="kas_debet">
+                                        <label for="kas_debet">Modal</label>
                                     </div>
                                 </div>
                             </div>

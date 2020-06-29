@@ -16,11 +16,11 @@ class Helper
         $transaksi = 0;
         $get_modal = DB::table('kas')->where('kas_type', 'modal')->get();
         foreach($get_modal as $get){
-            $modal = $modal + $get->kas_kredit;
+            $modal = $modal + $get->kas_debet;
         }
         $get_transaksi = DB::table('kas')->where('kas_type', 'transaksi')->get();
         foreach($get_transaksi as $get){
-            $transaksi = $transaksi + $get->kas_kredit - $get->kas_debet;
+            $transaksi = $transaksi + $get->kas_debet - $get->kas_kredit;
         }
         return $modal + $transaksi;
     }

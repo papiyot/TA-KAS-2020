@@ -77,4 +77,15 @@ class MasterController extends Controller
         return redirect('master/'.$table);
     }
 
+    public function saldo(Request $request)
+    {
+        $insert['kas_id'] =  Helper::getCode('kas', 'kas_id','KS-');
+        $insert['kas_type'] = 'modal';
+        $insert['kas_ket'] = 'modal';
+        $insert['kas_id_value'] = 'modal';
+        $insert['kas_debet'] = $request['kas_debet'];
+        DB::table('kas')->insert( $insert );
+        return redirect()->back();
+    }
+
 }
