@@ -3,6 +3,7 @@
 @section('content')
 <div class="col-md-12">
     <!-- Material (floating) Register -->
+    @if(Auth::user()->jabatan!='manager')
     <div class="block block-themed  @if(session()->has('status')) 'block-mode-hidden' @else {{$data->class}} @endif">
         <div class="block-header bg-gd-primary">
             <h3 class="block-title">{{$data->action}} Supplier</h3>
@@ -19,6 +20,9 @@
                     <div class="col-12 col-sm-6 col-md-4 ">
                         <div class="form-material floating">
                             <input type="hidden" class="form-control" id="supplier_id" name="supplier_id" value="@php echo ($data->edit) ? $data->edit->supplier_id: ''; @endphp">
+                            @if($data->edit)
+                            <input type="hidden" class="form-control" id="supplier_nama_old" name="supplier_nama_old" required value="@php echo ($data->edit) ? $data->edit->supplier_nama: null; @endphp">
+                            @endif
                             <input type="text" class="form-control" id="supplier_nama" name="supplier_nama" required value="@php echo ($data->edit) ? $data->edit->supplier_nama: old('supplier_nama'); @endphp">
                             @if(session()->has('status')) <p class="text-danger">{{ session()->get('status') }}</p> @endif
                             <label for="supplier_nama">Nama Supplier</label>
@@ -52,11 +56,12 @@
             </form>
         </div>
     </div>
+    @endif
     <!-- END Material (floating) Register -->
 
     <div class="block block-themed">
         <div class="block-header bg-gd-primary">
-            <h3 class="block-title">Supplier Table</h3>
+            <h3 class="block-title">Daftar Supplier</h3>
         </div>
         <div class="block-content">
             <div class="table-responsive">
@@ -67,7 +72,9 @@
                             <th>NAMA</th>
                             <th>Kontak</th>
                             <th>Alamat</th>
+                            @if(Auth::user()->jabatan!='manager')
                             <th class="text-center">Actions</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -78,6 +85,7 @@
                             <td class="font-w600 text-uppercase text-primary">{{$list->supplier_nama}}</td>
                             <td>{{$list->supplier_telp}}</td>
                             <td class="font-w300 font-size-sm text-uppercase text-secondary">{{$list->supplier_alamat}}</td>
+                            @if(Auth::user()->jabatan!='manager')
                             <td class="text-center">
                                 <div class="btn-group">
                                     <a href="{{ route('master',['supplier', $list->supplier_id]) }}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
@@ -86,6 +94,7 @@
                                     <a class="btn btn-sm btn-danger" data-toggle="confirmation" data-popout="true" data-title="Hapus Data ini?" href="{{ route('delete',['supplier', $list->supplier_id]) }}"><i class="fa fa-times"></i></a>
                                 </div>
                             </td>
+                            @endif
                         </tr>
                         @php $no++; @endphp @endforeach
                     </tbody>

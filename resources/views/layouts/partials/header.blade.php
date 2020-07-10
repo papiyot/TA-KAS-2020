@@ -76,7 +76,7 @@
                 </div>
             </div>
 
-            <x-Saldo/>
+            <x-Saldo />
 
             <!-- END Layout Options -->
         </div>
@@ -93,6 +93,9 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
                     <h5 class="h6 text-center py-10 mb-5 border-b text-uppercase">User</h5>
+                    <a class="dropdown-item" href="{{ route('master',['users', Auth::user()->id]) }}">
+                        <i class="si si-users mr-5"></i> Change Profile
+                    </a>
                     <a class="dropdown-item" href="#" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
                         <i class="si si-logout mr-5"></i> Sign Out

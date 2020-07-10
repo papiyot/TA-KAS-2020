@@ -3,6 +3,7 @@
 @section('content')
 <div class="col-md-12">
     <!-- Material (floating) Register -->
+    @if(Auth::user()->jabatan!='manager' || $data->edit)
     <div class="block block-themed  @if(session()->has('status')) 'block-mode-hidden' @else {{$data->class}} @endif">
         <div class="block-header bg-gd-primary">
             <h3 class="block-title">{{$data->action}} Users</h3>
@@ -18,6 +19,9 @@
                 <div class="form-group row">
                     <div class="col-12 col-sm-6 col-md-4 ">
                         <div class="form-material floating">
+                            @if($data->edit)
+                            <input type="hidden" class="form-control" id="name_old" name="name_old" required value="@php echo ($data->edit) ? $data->edit->name: null; @endphp">
+                            @endif
                             <input type="text" required class="form-control" id="name" name="name" value="@php echo ($data->edit) ? $data->edit->name: old('name'); @endphp">
                             @if(session()->has('status')) <p class="text-danger">{{ session()->get('status') }}</p> @endif
                             <label for="name">Nama</label>
@@ -51,7 +55,7 @@
                                 <option value="admin" @php echo ($data->edit) ? ($data->edit->jabatan=='admin') ? 'selected': '' : null; @endphp>Admin</option>
                                 <option value="manager" @php echo ($data->edit) ? ($data->edit->jabatan=='manager') ? 'selected': '' : null; @endphp>Manager</option>
                                 <option value="pembelian" @php echo ($data->edit) ? ($data->edit->jabatan=='pembelian') ? 'selected': '' : null; @endphp>Pembelian</option>
-                                <option value="penjualan" @php echo ($data->edit) ? ($data->edit->jabatan=='penjualan') ? 'selected': '' : null; @endphp>Penjualan</option>
+                                <option value="kasir" @php echo ($data->edit) ? ($data->edit->jabatan=='kasir') ? 'selected': '' : null; @endphp>Kasir</option>
                             </select>
                             <label for="barang_harga">Jabatan</label>
                         </div>
@@ -80,11 +84,12 @@
             </form>
         </div>
     </div>
+    @endif
     <!-- END Material (floating) Register -->
-
+    @if(Auth::user()->jabatan=='manager' && $data->edit==null)
     <div class="block block-themed">
         <div class="block-header bg-gd-primary">
-            <h3 class="block-title">Users Table</h3>
+            <h3 class="block-title">Daftar Users</h3>
         </div>
         <div class="block-content">
             <div class="table-responsive">
@@ -95,7 +100,9 @@
                             <th>NAMA</th>
                             <th>Jabatan</th>
                             <th>Email</th>
+                            @if(Auth::user()->jabatan!='manager')
                             <th class="text-center" style="width: 15%;">Actions</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -106,6 +113,7 @@
                             <td class="font-w600 text-uppercase text-primary">{{$list->name}}</td>
                             <td class="font-w600 text-uppercase text-secondary">{{$list->jabatan}}</td>
                             <td class="font-w600">{{$list->email}}</td>
+                            @if(Auth::user()->jabatan!='manager')
                             <td class="text-center">
                                 <div class="btn-group">
                                     <a href="{{ route('master',['users', $list->id]) }}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
@@ -114,6 +122,7 @@
                                     <a class="btn btn-sm btn-danger" data-toggle="confirmation" data-popout="true" data-title="Hapus Data ini?" href="{{ route('delete',['users', $list->id]) }}"><i class="fa fa-times"></i></a>
                                 </div>
                             </td>
+                            @endif
                         </tr>
                         @php $no++; @endphp @endforeach
                     </tbody>
@@ -121,5 +130,6 @@
             </div>
         </div>
     </div>
+    @endif
 </div>
 @endsection

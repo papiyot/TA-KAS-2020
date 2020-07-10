@@ -28,6 +28,7 @@ class MasterController extends Controller
             $data->class = '';
             $data->edit = DB::table($table)->where($field_id, $id)->first();
         }
+        // dd(Auth::user());
         return view('pages.'.$table,  compact('data'));
     }
 
@@ -38,10 +39,13 @@ class MasterController extends Controller
             $field_id = 'id';
             if (is_null($request[$field_id])){
                 $request->request->add( [$field_id =>Helper::getCode($table, $field_id,$code)] );
-                $cek = DB::table($table)->where('name', $request['name'])->count();
-                if ($cek != 0) {
-                    return Redirect()->back()->withInput()->with('status', 'Data Sudah Ada');
+                if($request['name']!= $request['name_old']){
+                    $cek = DB::table($table)->where('name', $request['name'])->count();
+                    if ($cek != 0) {
+                        return Redirect()->back()->withInput()->with('status', 'Data Sudah Ada');
+                    }
                 }
+                
                 DB::table($table)->insert(
                     [   'id' => Helper::getCode($table, $field_id,$code),
                         'name' => $request->name,
@@ -51,9 +55,11 @@ class MasterController extends Controller
                     ]);
             }else{
                 $get = DB::table($table)->where($field_id, $request[$field_id])->first();
-                $cek = DB::table($table)->where('name', $request['name'])->count();
-                if ($cek != 0) {
-                    return Redirect()->back()->withInput()->with('status', 'Data Sudah Ada');
+                if ($request['name'] != $request['name_old']) {
+                    $cek = DB::table($table)->where('name', $request['name'])->count();
+                    if ($cek != 0) {
+                        return Redirect()->back()->withInput()->with('status', 'Data Sudah Ada');
+                    }
                 }
                 if(Hash::check($request->password, $get->password)) {
                     DB::table($table)->where($field_id, $request[$field_id])->update(
@@ -66,11 +72,15 @@ class MasterController extends Controller
             }
         }else{
             if (is_null($request[$field_id])){$request->request->add( [$field_id =>Helper::getCode($table, $field_id,$code)] ); }
-            $cek = DB::table($table)->where($table . '_nama', $request[$table . '_nama'])->count();
-            if ($cek != 0) {  return Redirect()->back()->withInput()->with('status', 'Data Sudah Ada');}
+            if ($request[$table . '_nama'] != $request[$table . '_nama_old']) {
+                $cek = DB::table($table)->where($table . '_nama', $request[$table . '_nama'])->count();
+                if ($cek != 0) {
+                    return Redirect()->back()->withInput()->with('status', 'Data Sudah Ada');
+                }
+            }
             DB::table($table)->updateOrInsert(
                 [$field_id => $request[$field_id]],
-                $request->except('_token')
+                $request->except('_token', $table . '_nama_old')
             );
         }
 

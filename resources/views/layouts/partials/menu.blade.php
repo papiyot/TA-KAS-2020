@@ -7,8 +7,8 @@
             <div class="content-header-section sidebar-mini-visible-b">
                 <!-- Logo -->
                 <span class="content-header-item font-w700 font-size-xl float-left animated fadeIn">
-                                <span class="text-dual-primary-dark">c</span><span class="text-primary">b</span>
-                            </span>
+                    <span class="text-dual-primary-dark">c</span><span class="text-primary">b</span>
+                </span>
                 <!-- END Logo -->
             </div>
             <!-- END Mini Mode -->
@@ -50,7 +50,7 @@
                 </a>
                 <ul class="list-inline mt-10">
                     <li class="list-inline-item">
-                        <a class="link-effect text-dual-primary-dark font-size-sm font-w600 text-uppercase" href="be_pages_generic_profile.html">{{ Auth::user()->name }}</a>
+                        <a class="link-effect text-dual-primary-dark font-size-sm font-w600 text-uppercase">{{ Auth::user()->name }}</a>
                     </li>
                     <li class="list-inline-item">
                         <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
@@ -77,50 +77,68 @@
                 <li>
                     <a href="{{ route('home') }}"><i class="si si-cup"></i><span class="sidebar-mini-hide">Home</span></a>
                 </li>
+                @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='manager')
                 <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span class="sidebar-mini-hidden">Master</span></li>
+
                 <li>
+                    @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='manager')
                     <a href="{{ route('master',['barang']) }}"><i class="fa fa-inbox"></i><span class="sidebar-mini-hide">Barang</span></a>
-                </li>
-                <li>
                     <a href="{{ route('master',['supplier']) }}"><i class="fa fa-cube"></i><span class="sidebar-mini-hide">Supplier</span></a>
-                </li>
-                <li>
                     <a href="{{ route('master',['biaya']) }}"><i class="si si-wallet"></i><span class="sidebar-mini-hide">Biaya</span></a>
-                </li>
-                <li>
+                    @endif
+                    @if(Auth::user()->jabatan=='manager')
                     <a href="{{ route('master',['users']) }}"><i class="si si-users"></i><span class="sidebar-mini-hide">Users</span></a>
+                    @endif
                 </li>
+                @endif
+
+                @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='kasir')
                 <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span class="sidebar-mini-hidden">Transaksi</span></li>
+
                 <li>
+                    @if(Auth::user()->jabatan=='pembelian')
                     <a href="{{ route('beli.list') }}"><i class="fa fa-cart-plus"></i><span class="sidebar-mini-hide">Pembelian</span></a>
-                </li>
-                <li>
-                    <a href="{{ route('jual.list') }}"><i class="fa fa-cart-arrow-down"></i><span class="sidebar-mini-hide">Penjualan</span></a>
-                </li>
-                <li>
                     <a href="{{ route('biayatransaksi.transaksi') }}"><i class="fa fa-edit"></i><span class="sidebar-mini-hide">Biaya</span></a>
+                    @endif
+                    @if(Auth::user()->jabatan=='kasir')
+                    <a href="{{ route('jual.list') }}"><i class="fa fa-cart-arrow-down"></i><span class="sidebar-mini-hide">Penjualan</span></a>
+                    @endif
                 </li>
+                @endif
+
+                @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='kasir' || Auth::user()->jabatan=='manager')
                 <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span class="sidebar-mini-hidden">Jurnal</span></li>
-                <li>
+                <!-- <li>
                     <a href="{{ route('jurnal.jpembelian') }}"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Pembelian</span></a>
                 </li>
                 <li>
                     <a href="{{ route('jurnal.jpenjualan') }}"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Penjualan</span></a>
-                </li>
+                </li> -->
+
                 <li>
+                    @if(Auth::user()->jabatan=='kasir' || Auth::user()->jabatan=='manager')
                     <a href="{{ route('jurnal.jpenerimaankas') }}"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Penerimaan Kas</span></a>
-                </li>
-                <li>
+                    @endif
+                    @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='manager')
                     <a href="{{ route('jurnal.jpengeluarankas') }}"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Pengeluaran Kas</span></a>
-                </li>
-                <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span class="sidebar-mini-hidden">Laporan</span></li>
-                <li>
-                    <a href="{{ route('laporan.lpembelian') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Pembelian</span></a>
-                    <a href="{{ route('laporan.lpenerimaankas') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Penerimaan Kas</span></a>
-                    <a href="{{ route('laporan.lpengeluarankas') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Pengeluaran Kas</span></a>
-                    <a href="{{ route('laporan.lbukubesarkas') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Buku Besar Kas</span></a>
+                    @endif
                 </li>
 
+                @endif
+
+                @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='kasir' || Auth::user()->jabatan=='manager')
+                <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span class="sidebar-mini-hidden">Laporan</span></li>
+                <li>
+                    @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='manager')
+                    <a href="{{ route('laporan.lpembelian') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Pembelian</span></a>
+                    <a href="{{ route('laporan.lpengeluarankas') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Pengeluaran Kas</span></a>
+                    @endif
+                    @if(Auth::user()->jabatan=='kasir' || Auth::user()->jabatan=='manager')
+                    <a href="{{ route('laporan.lpenerimaankas') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Penerimaan Kas</span></a>
+                    <a href="{{ route('laporan.lbukubesarkas') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Buku Besar Kas</span></a>
+                    @endif
+                </li>
+                @endif
             </ul>
         </div>
         <!-- END Side Navigation -->
