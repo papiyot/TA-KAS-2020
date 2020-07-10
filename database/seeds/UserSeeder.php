@@ -15,16 +15,16 @@ class UserSeeder extends Seeder
             [
                 [
                     'id' => 'US-1',
-                    'name' => 'Marfiana',
-                    'jabatan' => 'admin',
-                    'email' => 'admin@email.com',
+                    'name' => 'Ichsan',
+                    'jabatan' => 'manager',
+                    'email' => 'manager@email.com',
                     'password' => Hash::make('password'),
                     'created_at' => '2020-04-22 09:45:24',
                 ],[
                     'id' => 'US-2',
-                    'name' => 'Ichsan',
-                    'jabatan' => 'manager',
-                    'email' => 'manager@email.com',
+                    'name' => 'Marfiana',
+                    'jabatan' => 'kasir',
+                    'email' => 'kasir@email.com',
                     'password' => Hash::make('password'),
                     'created_at' => '2020-04-22 09:45:25',
                 ],[
@@ -34,13 +34,6 @@ class UserSeeder extends Seeder
                     'email' => 'pembelian@email.com',
                     'password' => Hash::make('password'),
                     'created_at' => '2020-04-22 09:45:26',
-                ],[
-                    'id' => 'US-4',
-                    'name' => 'Irawati',
-                    'jabatan' => 'penjualan',
-                    'email' => 'penjualan@email.com',
-                    'password' => Hash::make('password'),
-                    'created_at' => '2020-04-22 09:45:27',
                 ],
             ]
         );
