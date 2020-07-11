@@ -19,14 +19,14 @@
                                 <div class="col-12 col-sm-12 col-md-12">
                                     <div class="form-material">
                                         <input type="hidden" class="form-control" id="jual_detail_id" name="jual_detail_id"  value="@php echo ($data->edit) ? $data->edit->jual_detail_id: ''; @endphp">
-                                        <select onchange="getharga(this, 'jual_detail')" class="js-select2 form-control" id="jual_detail_barang_id" name="jual_detail_barang_id" required style="width: 100%;" >
+                                        <select onchange="getharga(this, 'jual_detail')" class="js-select2 form-control" id="barang_id" name="barang_id" required style="width: 100%;" >
                                             <option>--Pilih Data--</option>
                                             @foreach($data->barang as $barang)
                                             @php $harga=$barang->barang_harga_pembelian+(($barang->barang_harga_pembelian/100)*$barang->barang_margin); @endphp
-                                                <option harga="{{$harga}}" value="{{$barang->barang_id}}" @php echo ($data->edit) ? ($data->edit->jual_detail_barang_id == $barang->barang_id) ? 'selected': '' : null; @endphp>{{$barang->barang_id}} [ {{$barang->barang_nama}} ]</option>
+                                                <option harga="{{$harga}}" value="{{$barang->barang_id}}" @php echo ($data->edit) ? ($data->edit->barang_id == $barang->barang_id) ? 'selected': '' : null; @endphp>{{$barang->barang_id}} [ {{$barang->barang_nama}} ]</option>
                                             @endforeach
                                         </select>
-                                        <label for="jual_detail_barang_id">Kode Barang</label>
+                                        <label for="barang_id">Kode Barang</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6">

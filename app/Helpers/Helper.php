@@ -34,13 +34,4 @@ class Helper
         $code_generate = $code.$code_after;
         return $code_generate;
     }
-    public static function foreign($table,$fieldId,$index){
-        $data = DB::table($table)->get();
-        return $data[$index-1]->$fieldId;
-    }
-    public static function foreignData($table,$join=null){
-        $result = DB::table($table);
-        $join ? $result->join($join,$join.'_id','=',$table.'_'.$join.'_id'):null;
-        return $result->inRandomOrder()->first();
-    }
 }

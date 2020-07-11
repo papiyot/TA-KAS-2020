@@ -20,11 +20,11 @@
                                 <div class="col-12 col-sm-6 col-md-6">
                                     <div class="form-material">
                                         <input type="hidden" class="form-control" id="retur_id" name="retur_id"  value="@php echo ($data->retur) ? $data->retur->retur_id: $data->pembelian->beli_detail_id; @endphp">
-                                        <input type="hidden" class="form-control" id="retur_beli_id" name="retur_beli_id"  value="@php echo ($data->retur) ? $data->retur->retur_beli_id: $data->pembelian->beli_detail_beli_id; @endphp">
+                                        <input type="hidden" class="form-control" id="beli_id" name="beli_id"  value="@php echo ($data->retur) ? $data->retur->beli_id: $data->pembelian->beli_id; @endphp">
                                         <input type="hidden" class="form-control" id="total_retur" name="total_retur"  value="@php echo ($data->retur) ? $data->retur->retur_jml*$data->retur->retur_harga: 0; @endphp">
                                         <input type="hidden" class="form-control" id="total_pembelian" name="total_pembelian"  value="@php echo $data->total; @endphp">
-                                        <input type="text" class="form-control" readonly id="retur_barang_id" value="@php echo ($data->retur) ? $data->retur->retur_barang_id: $data->pembelian->beli_detail_barang_id; @endphp" name="retur_barang_id">
-                                        <label for="retur_barang_id">Kode Barang</label>
+                                        <input type="text" class="form-control" readonly id="barang_id" value="@php echo ($data->retur) ? $data->retur->barang_id: $data->pembelian->barang_id; @endphp" name="barang_id">
+                                        <label for="barang_id">Kode Barang</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6">
@@ -102,7 +102,7 @@
                             <td class="text-center table-secondary">
                                 <div class="btn-group">
                                     <a class="btn btn-sm btn-warning" data-toggle="confirmation" data-popout="true" data-title="Retur barang ini?"
-                                       href="{{ route('beli.faktur',[$list->beli_detail_beli_id, 'retur', $list->beli_detail_id]) }}" ><i class="fa fa-refresh"></i></a>
+                                       href="{{ route('beli.faktur',[$list->beli_id, 'retur', $list->beli_detail_id]) }}" ><i class="fa fa-refresh"></i></a>
                                 </div>
                             </td>
                             @endif

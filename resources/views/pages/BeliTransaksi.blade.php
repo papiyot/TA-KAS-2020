@@ -19,13 +19,13 @@
                                 <div class="col-12 col-sm-6 col-md-12">
                                     <div class="form-material">
                                         <input type="hidden" class="form-control" id="beli_detail_id" name="beli_detail_id"  value="@php echo ($data->edit) ? $data->edit->beli_detail_id: ''; @endphp">
-                                        <select onchange="getharga(this, 'beli_detail')" class="js-select2 form-control" id="beli_detail_barang_id" name="beli_detail_barang_id" required style="width: 100%;" >
+                                        <select onchange="getharga(this, 'beli_detail')" class="js-select2 form-control" id="barang_id" name="barang_id" required style="width: 100%;" >
                                             <option>--Pilih Data--</option>
                                             @foreach($data->barang as $barang)
-                                            <option harga="{{$barang->barang_harga_pembelian}}" value="{{$barang->barang_id}}" @php echo ($data->edit) ? ($data->edit->beli_detail_barang_id == $barang->barang_id) ? 'selected': '' : null; @endphp>{{$barang->barang_id}} [ {{$barang->barang_nama}} ]</option>
+                                            <option harga="{{$barang->barang_harga_pembelian}}" value="{{$barang->barang_id}}" @php echo ($data->edit) ? ($data->edit->barang_id == $barang->barang_id) ? 'selected': '' : null; @endphp>{{$barang->barang_id}} [ {{$barang->barang_nama}} ]</option>
                                             @endforeach
                                         </select>
-                                        <label for="beli_detail_barang_id">Kode Barang</label>
+                                        <label for="barang_id">Kode Barang</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6">
@@ -77,13 +77,13 @@
                                     </div>
                                     <div class="col-12 col-sm-6 col-md-6 ">
                                         <div class="form-material floating">
-                                            <select class="js-select2 form-control select2-text-body-bg-dark" required id="beli_supplier_id" name="beli_supplier_id" style="width: 100%;" >
+                                            <select class="js-select2 form-control select2-text-body-bg-dark" required id="supplier_id" name="supplier_id" style="width: 100%;" >
                                                 <option></option>
                                                 @foreach($data->supplier as $supplier)
                                                     <option  value="{{$supplier->supplier_id}}"> {{$supplier->supplier_nama}} </option>
                                                 @endforeach
                                             </select>
-                                            <label for="beli_supplier_id" class="text-body-bg-dark">Supplier</label>
+                                            <label for="supplier_id" class="text-body-bg-dark">Supplier</label>
                                         </div>
                                     </div>
                                 </div>

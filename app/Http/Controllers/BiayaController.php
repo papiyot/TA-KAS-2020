@@ -20,7 +20,7 @@ class BiayaController extends Controller
         $data =  new \stdClass();
         $data->edit = null;
         $data->action = null;
-        $data->list = DB::table('biaya_detail')->join('biaya', 'biaya_id', '=', 'biaya_detail_biaya_id')->get();
+        $data->list = DB::table('biaya_detail')->join('biaya', 'biaya.biaya_id', '=', 'biaya_detail.biaya_id')->get();
         $data->biaya = DB::table('biaya')->get();
         $data->total = 0;
         $data->date = Carbon::now()->translatedFormat('d F Y');

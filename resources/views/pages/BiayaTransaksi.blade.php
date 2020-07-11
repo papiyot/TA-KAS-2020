@@ -19,13 +19,13 @@
                             <div class="col-12 col-sm-12 col-md-4">
                                 <div class="form-material">
                                     <input type="hidden" class="form-control" id="biaya_detail_id" name="biaya_detail_id" value="@php echo ($data->edit) ? $data->edit->biaya_detail_id: ''; @endphp">
-                                    <select class="js-select2 form-control" id="biaya_detail_biaya_id" name="biaya_detail_biaya_id" required style="width: 100%;">
+                                    <select class="js-select2 form-control" id="biaya_id" name="biaya_id" required style="width: 100%;">
                                         <option>--Pilih Data--</option>
                                         @foreach($data->biaya as $biaya)
-                                        <option value="{{$biaya->biaya_id}}" @php echo ($data->edit) ? ($data->edit->biaya_detail_biaya_id == $biaya->biaya_id) ? 'selected': '' : null; @endphp>{{$biaya->biaya_id}} [ {{$biaya->biaya_nama}} ]</option>
+                                        <option value="{{$biaya->biaya_id}}" @php echo ($data->edit) ? ($data->edit->biaya_id == $biaya->biaya_id) ? 'selected': '' : null; @endphp>{{$biaya->biaya_id}} [ {{$biaya->biaya_nama}} ]</option>
                                         @endforeach
                                     </select>
-                                    <label for="biaya_detail_biaya_id">Kode Biaya</label>
+                                    <label for="biaya_id">Kode Biaya</label>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-4">
