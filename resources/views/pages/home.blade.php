@@ -3,10 +3,10 @@
 @section('content')
     <div class="block">
         <div class="block-header block-header-default">
-            <h3 class="block-title" style="font-size: 2rem;">Blank <small>Get Started</small></h3>
+            <h3 class="block-title" style="font-size: 2rem;">Selamat Datang</h3>
         </div>
         <div class="block-content">
-            <p>Create your own awesome project!</p>
+            <p>Sistem Informasi Akuntansi Kas di Toko Ida</p>
         </div>
     </div>
 @endsection

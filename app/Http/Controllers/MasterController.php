@@ -14,6 +14,11 @@ class MasterController extends Controller
         $this->middleware('auth');
     }
 
+    public function home()
+    {
+        return view('pages.home');
+    }
+
     public function view($table, $id = null)
     {
         $field_id = $table . '_id';

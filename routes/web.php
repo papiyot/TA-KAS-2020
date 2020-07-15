@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'MasterController@home')->name('home');
 Route::post('/master/store/{table}/{code}', 'MasterController@store')->name('master.store');
 Route::get('/master/{table}/{id?}', 'MasterController@view')->name('master');
 Route::get('/delete/{table}/{id?}', 'MasterController@delete')->name('delete');
