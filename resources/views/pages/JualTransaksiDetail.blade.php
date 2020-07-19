@@ -42,6 +42,7 @@
                         @endif
                         </tbody>
                     </table>
+                    <p>Notice : Barang yang dijual tidak dapat dikembalikan</p>
                 </div>
             </div>
         </div>

@@ -35,7 +35,7 @@ class JualController extends Controller
             }
         }
         if ($id != null) {
-            $data->edit = DB::table('jual_detail')->where('jual_detail_id', $id)->first();
+            $data->edit = DB::table('jual_detail')->join('barang', 'barang.barang_id', '=', 'jual_detail.barang_id')->where('jual_detail_id', $id)->first();
         }
         return view('pages.JualTransaksi',  compact('data'));
     }

@@ -112,9 +112,8 @@
                 <li>
                     @if(Auth::user()->jabatan=='kasir' || Auth::user()->jabatan=='pemilik')
                     <a href="{{ route('jurnal.jpenerimaankas') }}"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Penerimaan Kas</span></a>
-                    <a href="{{ route('jurnal.jpengeluarankas') }}"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Pengeluaran Kas</span></a>
                     @endif
-                    @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='pemilik')
+                    @if(Auth::user()->jabatan=='pemilik' || Auth::user()->jabatan=='kasir' || Auth::user()->jabatan=='pembelian')
                     <a href="{{ route('jurnal.jpengeluarankas') }}"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Pengeluaran Kas</span></a>
                     @endif
                 </li>
@@ -125,14 +124,13 @@
                 <li>
                     @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='pemilik')
                     <a href="{{ route('laporan.lpembelian') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Pembelian</span></a>
-                    <a href="{{ route('laporan.lpengeluarankas') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Pengeluaran Kas</span></a>
                     @endif
                     @if(Auth::user()->jabatan=='kasir' || Auth::user()->jabatan=='pemilik')
                     <a href="{{ route('laporan.lpengeluarankas') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Pengeluaran Kas</span></a>
                     <a href="{{ route('laporan.lpenerimaankas') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Penerimaan Kas</span></a>
                     <a href="{{ route('laporan.lbukubesarkas') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Buku Besar Kas</span></a>
                     @endif
-                </li>
+                </li>       
                 @endif
             </ul>
         </div>

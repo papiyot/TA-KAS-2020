@@ -20,7 +20,7 @@ use Carbon\Carbon;
 
 Route::get('/', function () {
 //    return view('pages.PenjualanTransaksi');
-    return view('welcome');
+    return redirect('/home');
 });
 
 Auth::routes();
