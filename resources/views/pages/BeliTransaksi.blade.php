@@ -49,7 +49,7 @@
                                         <i class="fa fa-plus mr-5"></i> Tambah Barang
                                     </button>
                                     <button type="reset" class="btn btn-alt-secondary">
-                                        <i class="fa fa-minus mr-5"></i> Reset
+                                        <i class="fa fa-minus mr-5"></i> Batal
                                     </button>
                                 </div>
                             </div>

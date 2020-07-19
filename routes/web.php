@@ -19,7 +19,6 @@ use Carbon\Carbon;
 */
 
 Route::get('/', function () {
-//    return view('pages.PenjualanTransaksi');
     return redirect('/home');
 });
 
