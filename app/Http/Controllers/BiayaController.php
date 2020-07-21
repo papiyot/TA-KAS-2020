@@ -18,6 +18,7 @@ class BiayaController extends Controller
     public function transaksi( $id=null)
     {
         $data =  new \stdClass();
+        Session(['saldo' => Helper::saldo()]);
         $data->edit = null;
         $data->action = null;
         $data->list = DB::table('biaya_detail')->join('biaya', 'biaya.biaya_id', '=', 'biaya_detail.biaya_id')->get();
