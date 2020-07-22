@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6">
                                     <div class="form-material">
-                                        <input type="number" min="0" @php echo ($data->edit) ? 'max="'.$data->edit->barang_stok.'"': ''; @endphp class="form-control" id="jual_detail_jml" value="@php echo ($data->edit) ? $data->edit->jual_detail_jml: ''; @endphp" name="jual_detail_jml" required >
+                                        <input type="number" min="0" step="0.1" @php echo ($data->edit) ? 'max="'.$data->edit->barang_stok.'"': ''; @endphp class="form-control" id="jual_detail_jml" value="@php echo ($data->edit) ? $data->edit->jual_detail_jml: ''; @endphp" name="jual_detail_jml" required >
                                         <label for="jual_detail_jml">Jumlah</label>
                                     </div>
                                 </div>

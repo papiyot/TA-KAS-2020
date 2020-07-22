@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6">
                                     <div class="form-material">
-                                        <input type="number" min="0" class="form-control" id="beli_detail_jml" value="@php echo ($data->edit) ? $data->edit->beli_detail_jml: ''; @endphp" name="beli_detail_jml" required >
+                                        <input type="number" min="0" step="0.1" class="form-control" id="beli_detail_jml" value="@php echo ($data->edit) ? $data->edit->beli_detail_jml: ''; @endphp" name="beli_detail_jml" required >
                                         <label for="beli_detail_jml">Jumlah</label>
                                     </div>
                                 </div>

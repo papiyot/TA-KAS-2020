@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6">
                                     <div class="form-material">
-                                        <input type="number" max="{{$data->max}}" class="form-control" id="retur_jml" value="@php echo ($data->retur) ? $data->retur->retur_jml: $data->pembelian->beli_detail_jml; @endphp" name="retur_jml" required >
+                                        <input type="number" min="0" step="0.1" max="{{$data->max}}" class="form-control" id="retur_jml" value="@php echo ($data->retur) ? $data->retur->retur_jml: $data->pembelian->beli_detail_jml; @endphp" name="retur_jml" required >
                                         <label for="retur_jml">Jumlah</label>
                                     </div>
                                 </div>
