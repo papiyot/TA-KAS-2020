@@ -35,6 +35,7 @@ class BiayaController extends Controller
     public function store( Request $request)
     {
         if (is_null($request['biaya_detail_id'])){ $request->request->add( ['biaya_detail_id' =>Helper::getCode('biaya_detail', 'biaya_detail_id','BT-')] );  }
+        // $request->request->add( ['biaya_detail_tgl' =>Carbon::now()] );
         $save_biaya = DB::table('biaya_detail')->updateOrInsert(
             ['biaya_detail_id' => $request['biaya_detail_id']],
             $request->except('_token')
