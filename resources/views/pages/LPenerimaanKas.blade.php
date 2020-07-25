@@ -4,7 +4,7 @@
     <div class="col-md-12">
         <div class="block block-themed block-rounded">
             <div class="block-header bg-gd-primary">
-                <h3 class="block-title">Laporan Penerimaan Kas</h3>
+                <h3 class="block-title" style="font-size: 2rem;">Laporan Penerimaan Kas</h3>
                 <btn class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-fromleft">Periode</btn>
                 <btn class="btn btn-secondary btn-sm" onclick="printDiv('print')">Print</btn>
             </div>

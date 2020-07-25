@@ -4,10 +4,11 @@
 <div class="col-md-12">
     <div class="row row-deck gutters-tiny">
         <!-- Billing Address -->
+        @if(Auth::user()->jabatan=='kasir')
         <div class="col-md-12">
             <div class="block block-themed block-rounded">
                 <div class="block-header bg-gd-primary">
-                    <h3 class="block-title">{{$data->action}} Transaksi Biaya </h3>
+                    <h3 class="block-title" style="font-size: 2rem;">{{$data->action}} Transaksi Biaya </h3>
                     <div class="block-options">
                         {{$data->date}}
                     </div>
@@ -30,7 +31,10 @@
                             </div>
                             <div class="col-12 col-sm-12 col-md-4">
                                 <div class="form-material">
-                                    <input type="number" min="0" max="{{Session::get('saldo')}}" onchange="ceksaldo('biaya_detail_jml')" class="form-control" id="biaya_detail_jml" value="@php echo ($data->edit) ? $data->edit->biaya_detail_jml: ''; @endphp" name="biaya_detail_jml" required>
+                                    @php 
+                                    $jumlah = ($data->edit) ? floatval($data->edit->biaya_detail_jml):null; 
+                                    @endphp
+                                    <input type="number" min="0" max="{{$jumlah+floatval(Session::get('saldo'))}}" onchange="ceksaldo('biaya_detail_jml',{{$jumlah}} )" class="form-control" id="biaya_detail_jml" value="@php echo ($data->edit) ? $data->edit->biaya_detail_jml: ''; @endphp" name="biaya_detail_jml" required>
                                     <label for="biaya_detail_jml">Nominal biaya</label>
                                 </div>
                             </div>
@@ -57,13 +61,13 @@
                 </div>
             </div>
         </div>
+        @endif
         <!-- END Billing Address -->
 
     </div>
-    {{-- <h2 class="content-heading">Products (5)</h2>--}}
     <div class="block block-themed block-rounded">
         <div class="block-header bg-gd-primary">
-            <h3 class="block-title">Daftar Biaya</h3>
+            <h3 class="block-title" style="font-size: 2rem;">Daftar Transaksi Biaya</h3>
         </div>
         <div class="block-content">
             <div class="table-responsive">
@@ -74,17 +78,21 @@
                             <th>Biaya</th>
                             <th>Tanggal</th>
                             <th class="text-right" style="width: 30%;">Nominal</th>
+                            @if(Auth::user()->jabatan=='kasir')
                             <th class="text-center" style="width: 100px;">Actions</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
-                        @php $no=1; @endphp
+                        @php $no=1; $tot=0; @endphp
                         @foreach($data->list as $list)
                         <tr>
                             <td class="text-center">{{$no}}</td>
                             <td class="font-w600 text-uppercase text-primary">{{$list->biaya_nama}}</td>
                             <td class="font-w600 text-secondary text-uppercase"> @date($list->biaya_detail_tgl)</td>
                             <td class="text-right text-primary"> @rp($list->biaya_detail_jml)</td>
+                            @php $tot=$tot+$list->biaya_detail_jml; @endphp
+                            @if(Auth::user()->jabatan=='kasir')
                             <td class="text-center">
                                 <div class="btn-group">
                                     <a href="{{ route('biayatransaksi.transaksi',[$list->biaya_detail_id]) }}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
@@ -93,9 +101,20 @@
                                     <a class="btn btn-sm btn-danger" data-toggle="confirmation" data-popout="true" data-title="Hapus Data ini?" href="{{ route('biayatransaksi.delete',[$list->biaya_detail_id]) }}"><i class="fa fa-times"></i></a>
                                 </div>
                             </td>
+                            @endif
                         </tr>
                         @php $no++; @endphp @endforeach
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" class="text-right font-w600 text-uppercase text-primary">Total :</td>
+                            @if(Auth::user()->jabatan=='kasir')
+                            <td colspan="2" class="text-left font-w600 text-uppercase text-primary">@rp($tot)</td>
+                            @else
+                            <td class="text-left font-w600 text-uppercase text-primary">@rp($tot)</td>
+                            @endif
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
 

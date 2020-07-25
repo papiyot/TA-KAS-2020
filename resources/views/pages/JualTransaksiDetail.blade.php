@@ -5,7 +5,7 @@
 
         <div class="block block-themed block-rounded">
             <div class="block-header bg-gd-primary">
-                <h3 class="block-title">Detail No Faktur {{$data->id}} Pada @date($data->date)</h3>
+                <h3 class="block-title" style="font-size: 2rem;">Detail No Faktur {{$data->id}} Pada @date($data->date)</h3>
             </div>
             <div class="block-content">
                 <div class="table-responsive">

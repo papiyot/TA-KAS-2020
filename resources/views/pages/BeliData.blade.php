@@ -4,16 +4,18 @@
     <div class="col-md-12">
         <div class="block block-themed block-rounded">
             <div class="block-header bg-gd-primary">
-                <h3 class="block-title">
-                    Daftar Pembelian |
+                <h3 class="block-title" style="font-size: 2rem;">
+                    Daftar Pembelian 
+                    @if(Auth::user()->jabatan=='pembelian')
                     @if(Session::get('saldo')==0)
-                    <btn class="btn btn-alt-primary" data-toggle="modal" data-target="#modal-alert-saldo">
+                    | <btn class="btn btn-alt-primary" data-toggle="modal" data-target="#modal-alert-saldo">
                         <i class="fa fa-plus mr-5"></i> Tambah Pembelian
                     </btn>
                     @else
                     <a  href="{{ route('beli.transaksi') }}" class="btn btn-alt-primary">
                         <i class="fa fa-plus mr-5"></i> Tambah Pembelian
                     </a>
+                    @endif
                     @endif
                     
                 </h3>
@@ -60,7 +62,11 @@
                                     @rp($list->beli_total)
                                 </td>
                                 <td class="text-right font-w600 text-primary ">
-                                    <a href="{{ route('beli.faktur',[$list->beli_id, 'retur']) }}">@rp($list->beli_retur)</a>
+                                @if(Auth::user()->jabatan=='pembelian') 
+                                <a href="{{ route('beli.faktur',[$list->beli_id, 'retur']) }}">@rp($list->beli_retur)</a> 
+                                @else
+                                @rp($list->beli_retur)
+                                @endif
                                 </td>
                                 <td class="text-right font-w600 text-secondary ">
                                     @rp($list->beli_total-$list->beli_retur)

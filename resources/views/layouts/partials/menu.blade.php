@@ -77,63 +77,58 @@
                 <li>
                     <a href="{{ route('home') }}"><i class="si si-cup"></i><span class="sidebar-mini-hide">Home</span></a>
                 </li>
-                @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='manager')
+                @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='kasir' || Auth::user()->jabatan=='pemilik')
                 <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span class="sidebar-mini-hidden">Master</span></li>
 
                 <li>
-                    @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='manager')
+                    @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='pemilik')
                     <a href="{{ route('master',['barang']) }}"><i class="fa fa-inbox"></i><span class="sidebar-mini-hide">Barang</span></a>
                     <a href="{{ route('master',['supplier']) }}"><i class="fa fa-cube"></i><span class="sidebar-mini-hide">Supplier</span></a>
+                    @endif
+                    @if(Auth::user()->jabatan=='kasir' || Auth::user()->jabatan=='pemilik')
                     <a href="{{ route('master',['biaya']) }}"><i class="si si-wallet"></i><span class="sidebar-mini-hide">Biaya</span></a>
                     @endif
-                    @if(Auth::user()->jabatan=='manager')
+                    @if(Auth::user()->jabatan=='pemilik')
                     <a href="{{ route('master',['users']) }}"><i class="si si-users"></i><span class="sidebar-mini-hide">Users</span></a>
                     @endif
                 </li>
                 @endif
 
-                @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='kasir')
+                @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='kasir' || Auth::user()->jabatan=='pemilik')
                 <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span class="sidebar-mini-hidden">Transaksi</span></li>
-
                 <li>
-                    @if(Auth::user()->jabatan=='pembelian')
+                    @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='pemilik')
                     <a href="{{ route('beli.list') }}"><i class="fa fa-cart-plus"></i><span class="sidebar-mini-hide">Pembelian</span></a>
-                    <a href="{{ route('biayatransaksi.transaksi') }}"><i class="fa fa-edit"></i><span class="sidebar-mini-hide">Biaya</span></a>
                     @endif
-                    @if(Auth::user()->jabatan=='kasir')
+                    @if(Auth::user()->jabatan=='kasir' || Auth::user()->jabatan=='pemilik')
+                    <a href="{{ route('biayatransaksi.transaksi') }}"><i class="fa fa-edit"></i><span class="sidebar-mini-hide">Biaya</span></a>
                     <a href="{{ route('jual.list') }}"><i class="fa fa-cart-arrow-down"></i><span class="sidebar-mini-hide">Penjualan</span></a>
                     @endif
                 </li>
                 @endif
 
-                @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='kasir' || Auth::user()->jabatan=='manager')
+                @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='kasir' || Auth::user()->jabatan=='pemilik')
                 <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span class="sidebar-mini-hidden">Jurnal</span></li>
-                <!-- <li>
-                    <a href="{{ route('jurnal.jpembelian') }}"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Pembelian</span></a>
-                </li>
                 <li>
-                    <a href="{{ route('jurnal.jpenjualan') }}"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Penjualan</span></a>
-                </li> -->
-
-                <li>
-                    @if(Auth::user()->jabatan=='kasir' || Auth::user()->jabatan=='manager')
+                    @if(Auth::user()->jabatan=='kasir' || Auth::user()->jabatan=='pemilik')
                     <a href="{{ route('jurnal.jpenerimaankas') }}"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Penerimaan Kas</span></a>
+                    <a href="{{ route('jurnal.jpengeluarankas') }}"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Pengeluaran Kas</span></a>
                     @endif
-                    @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='manager')
+                    @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='pemilik')
                     <a href="{{ route('jurnal.jpengeluarankas') }}"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Pengeluaran Kas</span></a>
                     @endif
                 </li>
-
                 @endif
 
-                @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='kasir' || Auth::user()->jabatan=='manager')
+                @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='kasir' || Auth::user()->jabatan=='pemilik')
                 <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span class="sidebar-mini-hidden">Laporan</span></li>
                 <li>
-                    @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='manager')
+                    @if(Auth::user()->jabatan=='pembelian' || Auth::user()->jabatan=='pemilik')
                     <a href="{{ route('laporan.lpembelian') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Pembelian</span></a>
                     <a href="{{ route('laporan.lpengeluarankas') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Pengeluaran Kas</span></a>
                     @endif
-                    @if(Auth::user()->jabatan=='kasir' || Auth::user()->jabatan=='manager')
+                    @if(Auth::user()->jabatan=='kasir' || Auth::user()->jabatan=='pemilik')
+                    <a href="{{ route('laporan.lpengeluarankas') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Pengeluaran Kas</span></a>
                     <a href="{{ route('laporan.lpenerimaankas') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Penerimaan Kas</span></a>
                     <a href="{{ route('laporan.lbukubesarkas') }}"><i class="fa fa-bar-chart-o"></i><span class="sidebar-mini-hide">Buku Besar Kas</span></a>
                     @endif
@@ -145,3 +140,9 @@
     </div>
     <!-- Sidebar Content -->
 </nav>
+<!-- <li>
+                    <a href="{{ route('jurnal.jpembelian') }}"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Pembelian</span></a>
+                </li>
+                <li>
+                    <a href="{{ route('jurnal.jpenjualan') }}"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Penjualan</span></a>
+                </li> -->

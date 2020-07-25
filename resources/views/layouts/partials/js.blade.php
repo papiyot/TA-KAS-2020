@@ -23,13 +23,18 @@
         if (param == 'beli_detail') {
             let max = parseInt((saldo - total) / harga);
             document.getElementById('beli_detail_jml').max = max;
+        }else if(param == 'jual_detail'){
+            let max = $("#barang_id option:selected").attr('stok');
+            document.getElementById('jual_detail_jml').max = max;
         }
     }
 
-    function ceksaldo(param) {
+    function ceksaldo(param, add=null) {
         input_id = param;
+        let cek_saldo =saldo;
         var x = parseInt(document.getElementById(param).value);
-        if (x > saldo) {
+        (add) ? cek_saldo = saldo + parseInt(add):null;
+        if (x > cek_saldo) {
             $("#modal-alert-saldo").modal();
         }
     }

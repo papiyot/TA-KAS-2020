@@ -3,10 +3,10 @@
 @section('content')
 <div class="col-md-12">
     <!-- Material (floating) Register -->
-    @if(Auth::user()->jabatan!='manager')
+    @if(Auth::user()->jabatan!='pemilik')
     <div class="block block-themed  @if(session()->has('status')) 'block-mode-hidden' @else {{$data->class}} @endif">
         <div class="block-header bg-gd-primary">
-            <h3 class="block-title">{{$data->action}} Supplier</h3>
+            <h3 class="block-title" style="font-size: 2rem;">{{$data->action}} Supplier</h3>
             <div class="block-options">
                 <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
                     <i class="si si-refresh"></i>
@@ -61,7 +61,7 @@
 
     <div class="block block-themed">
         <div class="block-header bg-gd-primary">
-            <h3 class="block-title">Daftar Supplier</h3>
+            <h3 class="block-title" style="font-size: 2rem;">Daftar Supplier</h3>
         </div>
         <div class="block-content">
             <div class="table-responsive">
@@ -72,7 +72,7 @@
                             <th>NAMA</th>
                             <th>Kontak</th>
                             <th>Alamat</th>
-                            @if(Auth::user()->jabatan!='manager')
+                            @if(Auth::user()->jabatan!='pemilik')
                             <th class="text-center">Actions</th>
                             @endif
                         </tr>
@@ -85,7 +85,7 @@
                             <td class="font-w600 text-uppercase text-primary">{{$list->supplier_nama}}</td>
                             <td>{{$list->supplier_telp}}</td>
                             <td class="font-w300 font-size-sm text-uppercase text-secondary">{{$list->supplier_alamat}}</td>
-                            @if(Auth::user()->jabatan!='manager')
+                            @if(Auth::user()->jabatan!='pemilik')
                             <td class="text-center">
                                 <div class="btn-group">
                                     <a href="{{ route('master',['supplier', $list->supplier_id]) }}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">

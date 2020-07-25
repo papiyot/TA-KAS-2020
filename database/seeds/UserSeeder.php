@@ -16,8 +16,8 @@ class UserSeeder extends Seeder
                 [
                     'id' => 'US-1',
                     'name' => 'Ichsan',
-                    'jabatan' => 'manager',
-                    'email' => 'manager@email.com',
+                    'jabatan' => 'pemilik',
+                    'email' => 'pemilik@email.com',
                     'password' => Hash::make('password'),
                     'created_at' => '2020-04-22 09:45:24',
                 ],[

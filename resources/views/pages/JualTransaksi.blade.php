@@ -7,7 +7,7 @@
             <div class="col-md-8">
                 <div class="block block-themed block-rounded">
                     <div class="block-header bg-gd-primary">
-                        <h3 class="block-title">Penjualan</h3>
+                        <h3 class="block-title" style="font-size: 2rem;">Penjualan</h3>
                         <div class="block-options">
                             {{$data->date}}
                         </div>
@@ -23,7 +23,7 @@
                                             <option>--Pilih Data--</option>
                                             @foreach($data->barang as $barang)
                                             @php $harga=$barang->barang_harga_pembelian+(($barang->barang_harga_pembelian/100)*$barang->barang_margin); @endphp
-                                                <option harga="{{$harga}}" value="{{$barang->barang_id}}" @php echo ($data->edit) ? ($data->edit->barang_id == $barang->barang_id) ? 'selected': '' : null; @endphp>{{$barang->barang_id}} [ {{$barang->barang_nama}} ]</option>
+                                                <option stok="{{$barang->barang_stok}}" harga="{{$harga}}" value="{{$barang->barang_id}}" @php echo ($data->edit) ? ($data->edit->barang_id == $barang->barang_id) ? 'selected': '' : null; @endphp>{{$barang->barang_id}} [ {{$barang->barang_nama}} ]</option>
                                             @endforeach
                                         </select>
                                         <label for="barang_id">Kode Barang</label>
@@ -84,10 +84,9 @@
             </div>
             <!-- END Shipping Address -->
         </div>
-{{--        <h2 class="content-heading">Products (5)</h2>--}}
         <div class="block block-themed block-rounded">
             <div class="block-header bg-gd-primary">
-                <h3 class="block-title">Barang</h3>
+                <h3 class="block-title" style="font-size: 2rem;">Barang</h3>
             </div>
             <div class="block-content">
                 <div class="table-responsive">

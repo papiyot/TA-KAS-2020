@@ -3,10 +3,10 @@
 @section('content')
 <div class="col-md-12">
     <!-- Material (floating) Register -->
-    @if(Auth::user()->jabatan!='manager' || $data->edit)
+    @if(Auth::user()->jabatan=='pemilik' || $data->edit)
     <div class="block block-themed  @if(session()->has('status')) 'block-mode-hidden' @else {{$data->class}} @endif">
         <div class="block-header bg-gd-primary">
-            <h3 class="block-title">{{$data->action}} Users</h3>
+            <h3 class="block-title" style="font-size: 2rem;">{{$data->action}} Users</h3>
             <div class="block-options">
                 <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
                     <i class="si si-refresh"></i>
@@ -53,7 +53,7 @@
                             <select type="text" required class="form-control" id="jabatan" name="jabatan">
                                 <option>Pilih Jabatan</option>
                                 <option value="admin" @php echo ($data->edit) ? ($data->edit->jabatan=='admin') ? 'selected': '' : null; @endphp>Admin</option>
-                                <option value="manager" @php echo ($data->edit) ? ($data->edit->jabatan=='manager') ? 'selected': '' : null; @endphp>Manager</option>
+                                <option value="pemilik" @php echo ($data->edit) ? ($data->edit->jabatan=='pemilik') ? 'selected': '' : null; @endphp>Pemilik</option>
                                 <option value="pembelian" @php echo ($data->edit) ? ($data->edit->jabatan=='pembelian') ? 'selected': '' : null; @endphp>Pembelian</option>
                                 <option value="kasir" @php echo ($data->edit) ? ($data->edit->jabatan=='kasir') ? 'selected': '' : null; @endphp>Kasir</option>
                             </select>
@@ -86,10 +86,10 @@
     </div>
     @endif
     <!-- END Material (floating) Register -->
-    @if(Auth::user()->jabatan=='manager' && $data->edit==null)
+    @if(Auth::user()->jabatan=='pemilik' && $data->edit==null)
     <div class="block block-themed">
         <div class="block-header bg-gd-primary">
-            <h3 class="block-title">Daftar Users</h3>
+            <h3 class="block-title" style="font-size: 2rem;">Daftar Users</h3>
         </div>
         <div class="block-content">
             <div class="table-responsive">
@@ -100,7 +100,7 @@
                             <th>NAMA</th>
                             <th>Jabatan</th>
                             <th>Email</th>
-                            @if(Auth::user()->jabatan!='manager')
+                            @if(Auth::user()->jabatan!='pemilik')
                             <th class="text-center" style="width: 15%;">Actions</th>
                             @endif
                         </tr>
@@ -113,7 +113,7 @@
                             <td class="font-w600 text-uppercase text-primary">{{$list->name}}</td>
                             <td class="font-w600 text-uppercase text-secondary">{{$list->jabatan}}</td>
                             <td class="font-w600">{{$list->email}}</td>
-                            @if(Auth::user()->jabatan!='manager')
+                            @if(Auth::user()->jabatan!='pemilik')
                             <td class="text-center">
                                 <div class="btn-group">
                                     <a href="{{ route('master',['users', $list->id]) }}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">

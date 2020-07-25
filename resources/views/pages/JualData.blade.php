@@ -4,10 +4,12 @@
     <div class="col-md-12">
         <div class="block block-themed block-rounded">
             <div class="block-header bg-gd-primary">
-                <h3 class="block-title">Daftar Penjualan |
-                    <a  href="{{ route('jual.transaksi') }}" class="btn btn-alt-primary">
+                <h3 class="block-title" style="font-size: 2rem;">Daftar Penjualan 
+                @if(Auth::user()->jabatan=='kasir')
+                   | <a  href="{{ route('jual.transaksi') }}" class="btn btn-alt-primary">
                         <i class="fa fa-plus mr-5"></i>Tambah Penjualan
                     </a>
+                @endif
                 </h3>
 
                 <div class="block-options">

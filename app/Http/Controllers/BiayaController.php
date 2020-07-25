@@ -34,8 +34,7 @@ class BiayaController extends Controller
     public function store( Request $request)
     {
         if (is_null($request['biaya_detail_id'])){ $request->request->add( ['biaya_detail_id' =>Helper::getCode('biaya_detail', 'biaya_detail_id','BT-')] );  }
-        // $request->request->add( ['biaya_detail_tgl' =>Carbon::now()] );
-        DB::table('biaya_detail')->updateOrInsert(
+        $save_biaya = DB::table('biaya_detail')->updateOrInsert(
             ['biaya_detail_id' => $request['biaya_detail_id']],
             $request->except('_token')
         );
@@ -45,7 +44,7 @@ class BiayaController extends Controller
         $insert['kas_tgl'] = $request['biaya_detail_tgl'];
         $insert['kas_id_value'] = $request['biaya_detail_id'];
         $insert['kas_kredit'] = $request['biaya_detail_jml'];
-        DB::table('kas')->updateOrInsert(
+        $save_kas = DB::table('kas')->updateOrInsert(
             ['kas_id' => $insert['kas_id']],
             $insert
         );
@@ -54,7 +53,7 @@ class BiayaController extends Controller
 
     public function delete($id=null)
     {
-        DB::table('biaya_detail')->where('biaya_detail_id', $id)->delete();
+        $delete_biaya = DB::table('biaya_detail')->where('biaya_detail_id', $id)->delete();
         return redirect('biaya/transaksi');
     }
 }

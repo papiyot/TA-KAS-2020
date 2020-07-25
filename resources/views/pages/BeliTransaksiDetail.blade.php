@@ -8,7 +8,7 @@
             <div class="col-md-12">
                 <div class="block block-themed block-rounded">
                     <div class="block-header bg-gd-primary">
-                        <h3 class="block-title">Retur Pembelian</h3>
+                        <h3 class="block-title" style="font-size: 2rem;">Retur Pembelian</h3>
                         <div class="block-options">
                             {{$data->date}}
                         </div>
@@ -23,6 +23,7 @@
                                         <input type="hidden" class="form-control" id="beli_id" name="beli_id"  value="@php echo ($data->retur) ? $data->retur->beli_id: $data->pembelian->beli_id; @endphp">
                                         <input type="hidden" class="form-control" id="total_retur" name="total_retur"  value="@php echo ($data->retur) ? $data->retur->retur_jml*$data->retur->retur_harga: 0; @endphp">
                                         <input type="hidden" class="form-control" id="total_pembelian" name="total_pembelian"  value="@php echo $data->total; @endphp">
+                                        <input type="hidden" id="retur_jml_old" value="@php echo ($data->retur) ? $data->retur->retur_jml: $data->pembelian->beli_detail_jml; @endphp" name="retur_jml_old" >
                                         <input type="text" class="form-control" readonly id="barang_id" value="@php echo ($data->retur) ? $data->retur->barang_id: $data->pembelian->barang_id; @endphp" name="barang_id">
                                         <label for="barang_id">Kode Barang</label>
                                     </div>
@@ -68,7 +69,7 @@
 
         <div class="block block-themed block-rounded">
             <div class="block-header bg-gd-primary">
-                <h3 class="block-title">Pembelian Barang No Faktur {{$data->faktur}}
+                <h3 class="block-title" style="font-size: 2rem;">Pembelian Barang No Faktur {{$data->faktur}}
                     @if($data->type=='retur')
                         <btn class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-fromleft">change</btn>
                     @endif
@@ -126,7 +127,7 @@
 
         <div class="block block-themed block-rounded">
             <div class="block-header bg-gd-primary">
-                <h3 class="block-title">Retur Barang</h3>
+                <h3 class="block-title" style="font-size: 2rem;">Retur Barang</h3>
             </div>
             <div class="block-content">
                 <div class="table-responsive">

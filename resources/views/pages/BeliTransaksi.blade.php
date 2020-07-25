@@ -7,7 +7,7 @@
             <div class="col-md-8">
                 <div class="block block-themed block-rounded">
                     <div class="block-header bg-gd-primary">
-                        <h3 class="block-title">Pembelian</h3>
+                        <h3 class="block-title" style="font-size: 2rem;">Pembelian</h3>
                         <div class="block-options">
                             {{$data->date}}
                         </div>
@@ -101,10 +101,9 @@
             </div>
             <!-- END Shipping Address -->
         </div>
-{{--        <h2 class="content-heading">Products (5)</h2>--}}
         <div class="block block-themed block-rounded">
             <div class="block-header bg-gd-primary">
-                <h3 class="block-title">Barang</h3>
+                <h3 class="block-title" style="font-size: 2rem;">Barang</h3>
             </div>
             <div class="block-content">
                 <div class="table-responsive">

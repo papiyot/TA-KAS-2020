@@ -43,9 +43,14 @@ class JualController extends Controller
     public function barang_store(Request $request)
     {
         if (is_null($request['jual_detail_id'])) {
+            $cek =  DB::table('jual_detail')->whereNull('jual_id')->where('barang_id', $request->barang_id)->first();
             $request->request->add(['jual_detail_id' => Helper::getCode('jual_detail', 'jual_detail_id', 'JD-')]);
+            if($cek){
+                $request->request->add(['jual_detail_id' => $cek->jual_detail_id]);
+                $request['jual_detail_jml'] = $cek->jual_detail_jml + $request['jual_detail_jml'];
+            }
         }
-        DB::table('jual_detail')->updateOrInsert(
+        $save_barang = DB::table('jual_detail')->updateOrInsert(
             ['jual_detail_id' => $request['jual_detail_id']],
             $request->except('_token')
         );
@@ -58,21 +63,26 @@ class JualController extends Controller
             $request->request->add(['jual_id' => Helper::getCode('jual', 'jual_id', 'JL-')]);
         }
         $request->request->add(['jual_tgl' => Carbon::now()]);
-        DB::table('jual')->updateOrInsert(
+        $save_jual = DB::table('jual')->updateOrInsert(
             ['jual_id' => $request['jual_id']],
             $request->except('_token')
         );
-        DB::table('jual_detail')->whereNull('jual_id')->update(['jual_id' => $request['jual_id']]);
+        $barang_jual = DB::table('jual_detail')->whereNull('jual_id')->get();
+        foreach($barang_jual as $barang){
+            $get_barang = DB::table('barang')->where('barang_id', $barang->barang_id)->first();
+            $update_stok = DB::table('barang')->where('barang_id', $barang->barang_id)->update(['barang_stok' => $get_barang->barang_stok-$barang->jual_detail_jml]);
+        }
+        $save_barang_beli = DB::table('jual_detail')->whereNull('jual_id')->update(['jual_id' => $request['jual_id']]);
         $insert['kas_id'] =  Helper::getCode('kas', 'kas_id', 'KS-');
         $insert['kas_ket'] = 'jual';
         $insert['kas_id_value'] = $request['jual_id'];
         $insert['kas_debet'] = $request['jual_total'];
-        DB::table('kas')->insert($insert);
+        $save_kas = DB::table('kas')->insert($insert);
         return redirect('penjualan/list');
     }
     public function barang_delete($id = null)
     {
-        DB::table('jual_detail')->where('jual_detail_id', $id)->delete();
+        $delete_barang = DB::table('jual_detail')->where('jual_detail_id', $id)->delete();
         return redirect('penjualan/transaksi');
     }
 

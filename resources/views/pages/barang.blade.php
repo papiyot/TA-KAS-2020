@@ -3,10 +3,10 @@
 @section('content')
 <div class="col-md-12">
     <!-- Material (floating) Register -->
-    @if(Auth::user()->jabatan!='manager')
+    @if(Auth::user()->jabatan!='pemilik')
     <div class="block block-themed @if(session()->has('status')) 'block-mode-hidden' @else {{$data->class}} @endif">
         <div class="block-header bg-gd-primary">
-            <h3 class="block-title">{{$data->action}} Barang </h3>
+            <h3 class="block-title" style="font-size: 2rem;">{{$data->action}} Barang </h3>
             <div class="block-options">
                 <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
                     <i class="si si-refresh"></i>
@@ -53,8 +53,6 @@
                         </div>
                     </div>
                 </div>
-
-
                 <div class="form-group row"></div>
                 <div class="dropdown-divider"></div>
                 <div class="form-group row">
@@ -75,7 +73,7 @@
 
     <div class="block block-themed">
         <div class="block-header bg-gd-primary">
-            <h3 class="block-title">Daftar Barang </h3>
+            <h3 class="block-title" style="font-size: 2rem;">Daftar Barang </h3>
         </div>
         <div class="block-content">
             <div class="table-responsive">
@@ -89,7 +87,7 @@
                             <th class="text-right">HARGA PENJUALAN</th>
                             <th>STOK</th>
                             <th>SATUAN</th>
-                            @if(Auth::user()->jabatan!='manager')
+                            @if(Auth::user()->jabatan!='pemilik')
                             <th class="text-center">Actions</th>
                             @endif
                         </tr>
@@ -106,7 +104,7 @@
                             <td class="text-right" style="width: 15%;">@rp($harga)</td>
                             <td>{{$list->barang_stok}}</td>
                             <td class="text-uppercase">{{$list->barang_satuan}}</td>
-                            @if(Auth::user()->jabatan!='manager')
+                            @if(Auth::user()->jabatan!='pemilik')
                             <td class="text-center">
                                 <div class="btn-group">
                                     <a href="{{ route('master',['barang', $list->barang_id]) }}" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
